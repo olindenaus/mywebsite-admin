@@ -1,0 +1,24 @@
+.layout {
+    min-height: 100vh;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    grid-template-rows: 8vh auto minmax(2vh, 3vh);
+    grid-template-areas: "header header header header"
+                        "main main main main"
+                        "footer footer footer footer";
+}
+
+.toolbar {
+    grid-area: header;
+    background-color: rgb(231, 218, 218);
+}
+
+.content {
+    grid-area: main;
+}
+
+.footer {
+    grid-area: footer;
+    background-color: rgb(231, 218, 218);
+}
