@@ -19,24 +19,20 @@ const worldMapView = (props: any) => {
 
   const getStyleForVisitedCountry = (geo: any) => {
     const v = visitedCountries.find(c => c === geo.properties.ISO_A3);
-    return v ? { default: { fill: "#ff0000" } } : { default: { fill: 'salmon' } };
+    return v ? { default: { fill: "gray", stroke: "#000" } } : { default: { fill: '66ff66', stroke: "#000" } };
   }
 
   return (
     <div className="map-view">
       <p>Currently in... [city, country, cordinates]</p>
       <ComposableMap width={1920} height={1080} projectionConfig={{ scale: 315 }}>
-        {/* <ZoomableGroup zoom={1}> */}
-        <Graticule stroke="#F53" />
-          <Geographies geography={geoUrl}>
-            {({ geographies }: any) => geographies.map((geo: any) => {
-              const style = getStyleForVisitedCountry(geo);
-              return <Geography key={geo.rsmKey} geography={geo} style={style} />
-            }
-
-            )}
-          </Geographies>
-        {/* </ZoomableGroup> */}
+        <Graticule stroke="#ff5533" Globe={true} />
+        <Geographies geography={geoUrl}>
+          {({ geographies }: any) => geographies.map((geo: any) => {
+            const style = getStyleForVisitedCountry(geo);
+            return <Geography key={geo.rsmKey} geography={geo} style={style} />
+          })}
+        </Geographies>
       </ComposableMap>
     </div>
   )

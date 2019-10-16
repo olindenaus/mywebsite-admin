@@ -11,7 +11,8 @@
 
 .toolbar {
     grid-area: header;
-    background-color: rgb(231, 218, 218);
+    background-color: black;
+    // background-color: rgb(231, 218, 218);
 }
 
 .content {
@@ -20,5 +21,7 @@
 
 .footer {
     grid-area: footer;
-    background-color: rgb(231, 218, 218);
+    // background-color: rgb(231, 218, 218);
+    background-color: white;
+    color: black;
 }

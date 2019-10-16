@@ -4,7 +4,8 @@ const trainings = (props: any) => {
 
     return (
         <div>
-            Trainings
+            <p>Trainings</p>
+            <p>[Under construction]</p>
         </div>
     )
 };

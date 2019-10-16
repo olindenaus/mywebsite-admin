@@ -3,7 +3,8 @@ import React from 'react';
 const songOfADay = () => {
     return (
         <div>
-            Song of A Day
+            <p>Song of A Day</p>
+            <p>[Under construction]</p>
         </div>
     )
 }

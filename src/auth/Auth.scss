@@ -44,6 +44,26 @@ form {
             }
         } 
     }
+
+    .submit-button {
+        background-color: black;
+        color: white;
+        border: 1px solid black;
+        box-sizing: border-box;
+        font-size: 1.2em;
+        line-height: 2em;
+        width: 6em;
+        border-radius: 2px;
+        box-shadow: 0 0 2px 5px rgb(24, 23, 23);
+
+        &:hover{
+            cursor: pointer;
+            background-color: white;
+            color: black;
+            border: none;
+            box-shadow: 0 0 2px 5px rgb(233, 227, 227);
+        }
+    }
 }
 
 .underline {

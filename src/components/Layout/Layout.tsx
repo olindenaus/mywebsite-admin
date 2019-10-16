@@ -11,7 +11,7 @@ const layout = (props: any) => {
                 <NavigationLinks />
             </div>
             <div className="content">{props.children}</div>
-            <div className="footer">Oskar Lindenau {'\u00A9'} 2019</div>
+            <div className="footer">Oskar Lindenau - 2019</div>
         </div>
     )
 };

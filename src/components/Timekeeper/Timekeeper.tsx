@@ -4,7 +4,8 @@ const timekeeper = (props: any) => {
 
     return (
         <div>
-            Timekeeper
+            <p>Timekeeper</p>
+            <p>[Under construction]</p>
         </div>
     )
 };
