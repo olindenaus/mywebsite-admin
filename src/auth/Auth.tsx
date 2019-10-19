@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { NavLink, Redirect } from 'react-router-dom';
 
 import './Auth.scss';
 import * as actions from '../store/actions/index';
@@ -22,8 +23,14 @@ const Auth = (props: any) => {
         props.onAuth(login, password);
     }
 
+    let authRedirect = null;
+    if (props.isAuthenticated) {
+        authRedirect = <Redirect to="/admin" />
+    }
+
     return (
         <div className="auth-form">
+            {authRedirect}
             <form onSubmit={submitHandler}>
                 <div className="input-wrapper">
                     Login
@@ -41,6 +48,12 @@ const Auth = (props: any) => {
     )
 };
 
+const mapStateToProps = (state: any) => {
+    return {
+        isAuthenticated: state.auth.token !== null
+    };
+};
+
 const mapDispatchToProps = (dispatch: any) => {
     return {
         onAuth: (email: string, password: string) => dispatch(actions.auth(email, password))
@@ -48,4 +61,4 @@ const mapDispatchToProps = (dispatch: any) => {
 }
 
 
-export default connect(null, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

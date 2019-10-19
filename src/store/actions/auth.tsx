@@ -32,7 +32,7 @@ export const checkAuthTimeout = (expirationTime: number) => {
     return (dispatch: any) => {
         setTimeout(() => {
             dispatch(logout());
-        }, expirationTime)
+        }, expirationTime * 1000)
     }
 }
 
@@ -46,7 +46,7 @@ export const auth = (email: string, password: string) => {
         }
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY]', authData)
             .then(response => {
-                console.log(response);
+                console.log('Logged In');                
                 dispatch(authSuccess(response.data.idToken, response.data.localId));
                 dispatch(checkAuthTimeout(response.data.expiresIn));
             })

@@ -20,8 +20,12 @@ const rootReducer = combineReducers({
     auth: authReducer
 });
 
-const store = createStore(rootReducer, composeEnhancers(
-    applyMiddleware(thunk))
+// const store = createStore(rootReducer, composeEnhancers(
+//     applyMiddleware(thunk))
+// );
+
+const store = createStore(rootReducer,
+    applyMiddleware(thunk)
 );
 
 const app = (

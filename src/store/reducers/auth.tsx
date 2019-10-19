@@ -1,13 +1,15 @@
 import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
 
+type tState = {token?: string|any, userId?: string|any, error: any};
+
 const initialState = {
     token: null,
     userId: null,
     error: null,
 };
 
-const authSuccess = (state: any, action: any) => {
+const authSuccess = (state: tState, action: any) => {
     return updateObject(state, {
         token: action.idToken,
         userId: action.userId,
@@ -15,17 +17,17 @@ const authSuccess = (state: any, action: any) => {
     });
 };
 
-const authStart = (state: any) => {
+const authStart = (state: tState) => {
     return updateObject(state, { error: null });
 }
 
-const authFail = (state: any, action: any) => {
+const authFail = (state: tState, action: any) => {
     return updateObject(state, {
         error: action.error,
     });
 }
 
-const authLogout = (state: any, action: any) => {
+const authLogout = (state: tState, action: any) => {
     return updateObject(state, { token: null, userId: null });
 };
 
