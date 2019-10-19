@@ -9,6 +9,7 @@ import TimeKeeper from './components/Timekeeper/Timekeeper';
 import SongOfADay from './components/SongOfADay/SongOfADay';
 import Auth from './auth/Auth';
 import AdminPanel from './components/AdminPanel/AdminPanel';
+import LogsHistory from './components/LogsHistory/LogsHistory'
 import './App.css';
 
 // const TimeKeeper = React.lazy(()=> {
@@ -29,6 +30,7 @@ const App = (props: any) => {
       <Route path='/song' component={SongOfADay} />
       <Route path='/login' component={Auth} />
       <Route path='/admin' component={AdminPanel} />
+      <Route path='/logs' component={LogsHistory} />
       <Route path='/' component={WorldMapView} />
       <Redirect to='/' />
     </Switch>

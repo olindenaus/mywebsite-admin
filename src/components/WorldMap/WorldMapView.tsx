@@ -5,6 +5,7 @@ import {
   Geography,
   Graticule
 } from 'react-simple-maps';
+import { NavLink } from 'react-router-dom';
 
 import './WorldMapView.scss';
 
@@ -24,8 +25,11 @@ const worldMapView = (props: any) => {
 
   return (
     <div className="map-view">
-      <p>Currently in... [city, country, cordinates]</p>
-      <ComposableMap width={1920} height={1080} projectionConfig={{ scale: 315 }}>
+      <div className="info-panel">
+        <p>Currently in... [city, country, cordinates]</p>
+        <NavLink to="/logs"><div>See locations' history</div></NavLink>
+      </div>
+      <ComposableMap width={1920} height={1080} projectionConfig={{ scale: 280 }}>
         <Graticule stroke="#ff5533" Globe={true} />
         <Geographies geography={geoUrl}>
           {({ geographies }: any) => geographies.map((geo: any) => {

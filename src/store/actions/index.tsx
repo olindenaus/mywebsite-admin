@@ -2,5 +2,6 @@ export {
     auth
 } from './auth';
 export {
-    saveLocationLog
+    saveLocationLog,
+    fetchLocations
 } from './locationLogs';
