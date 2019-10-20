@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Media from 'react-media';
+import { NavLink } from 'react-router-dom';
 
 import Burger from '../Toolbar/Burger/Burger';
 import NavigationLinks from '../Toolbar/NavigationLinks/NavigationLinks';
@@ -33,13 +34,15 @@ const Layout = (props: any) => {
         </Media>
     )
 
+    const intViewportHeight = window.innerHeight;
+
     return (
-        <div className="layout">
+        <div className="layout" style={{minHeight: intViewportHeight}}>
             <div className="toolbar">
                 {navigation}
             </div>
             <div className="content">{props.children}</div>
-            <div className="footer">Oskar Lindenau - 2019</div>
+            <div className="footer"><NavLink to="/login">Oskar Lindenau - 2019</NavLink></div>
         </div>
     )
 };

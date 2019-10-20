@@ -7,7 +7,7 @@ const SideNav = (props: any) => {
 
     return (
         <div className="side-nav" style={{width: props.width}}>
-            <a href="javascript:void(0)" className="close-btn" onClick={props.closeClicked}>&times;</a>          
+            <a className="close-btn" onClick={props.closeClicked}>&times;</a>          
             <NavLink to="/" exact>Map</NavLink>
             <NavLink to="/trainings">Trainings</NavLink>
             <NavLink to="/timekeeper">TimeKeeper</NavLink>

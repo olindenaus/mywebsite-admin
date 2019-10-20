@@ -9,10 +9,29 @@
                         "footer footer footer footer";
 }
 
+@media (max-width: 520px) {
+    .layout {
+        display: flex;
+        flex-direction: column;
+        align-content: stretch;
+        overflow: auto;
+
+        .toolbar {
+            height: 50px;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+}
+
 .toolbar {
     grid-area: header;
     background-color: black;
-    // background-color: rgb(231, 218, 218);
 }
 
 .content {
@@ -21,7 +40,11 @@
 
 .footer {
     grid-area: footer;
-    // background-color: rgb(231, 218, 218);
     background-color: white;
     color: black;
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
 }

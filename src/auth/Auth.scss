@@ -3,6 +3,9 @@
     flex-direction: column;
     align-content: center;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 form {
     display: flex;
@@ -11,7 +14,6 @@ form {
     justify-content: center;
     width: 400px;
     height: 320px;
-    margin: auto;
     box-shadow: 0px 0px 16px 12px rgb(233, 227, 227);
 
     .input-wrapper {        
@@ -76,4 +78,11 @@ form {
     transition: all 0.3s linear;
     width: 200px;
       }
+}
+
+@media (max-width: 520px) {
+    form {
+        max-width: 90%;
+        margin: 0;
+    }
 }
