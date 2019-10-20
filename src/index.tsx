@@ -9,6 +9,8 @@ import thunk from 'redux-thunk';
 import './index.css';
 import App from './App';
 import authReducer from './store/reducers/auth';
+import logsReducer from './store/reducers/locationLogs';
+import adminReducer from './store/reducers/admin';
 
 declare global {
     interface Window { __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any; }
@@ -17,7 +19,9 @@ declare global {
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
 const rootReducer = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    logs: logsReducer,
+    admin: adminReducer
 });
 
 // const store = createStore(rootReducer, composeEnhancers(

@@ -20,11 +20,11 @@ const AdminPanel = (props: any) => {
 
     const getLocation = () => {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationFail, { enableHighAccuracy: true });
+            navigator.geolocation.getCurrentPosition(onLocationGetSuccess, onLocationGetFail, { enableHighAccuracy: true });
         }
     }
-
-    const onLocationSuccess = (position: any) => {
+    
+    const onLocationGetSuccess = (position: any) => {
         const logDate = Date.now();
         const tempLocationLog = {
             timestamp: logDate,
@@ -36,13 +36,24 @@ const AdminPanel = (props: any) => {
         setMessage(`Logged: ${dateVal}, Lat: ${tempLocationLog.latitude}, Long: ${tempLocationLog.longitude}`);
     }
 
-    const saveLocation = () => {
-        setMessage('Token: ' + props.token)
-        props.onSaveLocationLog(locationLog, props.token, props.userId);
+    const onLocationGetFail = (a: any) => {
+        setMessage(a.message);
     }
 
-    const onLocationFail = (a: any) => {
-        setMessage(a.message);
+    const trimLocation = () => {
+        const trimmedLat = parseFloat(locationLog.latitude.toFixed(1));
+        const trimmedLng = parseFloat(locationLog.longitude.toFixed(1));
+        setLocationLog({
+            timestamp: locationLog.timestamp,
+            latitude: trimmedLat,
+            longitude: trimmedLng
+        });
+        const dateVal = new Date(locationLog.timestamp).toLocaleString();
+        setMessage(`Logged: ${dateVal}, Lat: ${trimmedLat}, Long: ${trimmedLng}`);
+    }
+
+    const saveLocation = () => {
+        props.onSaveLocationLog(locationLog, props.token, props.userId);
     }
 
     const setLogManually = () => {
@@ -74,7 +85,9 @@ const AdminPanel = (props: any) => {
             <button onClick={() => setManual(!manual)}>Log manually</button>
             {manualPart}
             <p>{message}</p>
+            <button onClick={trimLocation}>Trim location</button>
             <button className="save-button" onClick={saveLocation}>Save</button>
+            <p>{props.responseMessage}</p>
         </div>
     )
 };
@@ -82,7 +95,8 @@ const AdminPanel = (props: any) => {
 const mapStateToProps = (state: any) => {
     return {
         token: state.auth.token,
-        userId: state.auth.userId
+        userId: state.auth.userId,
+        responseMessage: state.admin.responseMessage
     }
 }
 
