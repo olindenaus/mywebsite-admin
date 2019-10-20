@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   ComposableMap,
   Geographies,
   Geography,
   Graticule
 } from 'react-simple-maps';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
+import * as actions from '../../store/actions/index';
 import './WorldMapView.scss';
 
 const geoUrl =
@@ -16,17 +18,23 @@ const visitedCountries = ['POL', 'ARE', 'CHN', 'DEU', 'CHE', 'ITA', 'FRA', 'ESP'
   'PRT', 'ISL', 'FIN', 'DNK', 'SWE', 'HRV', 'TUR', 'GRC',
   'ISR', 'CZE', 'SVK', 'SVN', 'AUT'];
 
-const worldMapView = (props: any) => {
+const WorldMapView = (props: any) => {
+
+  useEffect(() => {
+    props.onFetchCountryInfo();
+  }, []);
 
   const getStyleForVisitedCountry = (geo: any) => {
     const v = visitedCountries.find(c => c === geo.properties.ISO_A3);
     return v ? { default: { fill: "gray", stroke: "#000" } } : { default: { fill: '66ff66', stroke: "#000" } };
   }
 
+
+
   return (
     <div className="map-view">
       <div className="info-panel">
-        <p>Currently in... [city, country, cordinates]</p>
+        <p>Currently in... {props.country}</p>
         <NavLink to="/logs"><div>See locations' history</div></NavLink>
       </div>
       <ComposableMap width={1920} height={1080} projectionConfig={{ scale: 280 }}>
@@ -41,4 +49,16 @@ const worldMapView = (props: any) => {
     </div>
   )
 };
-export default worldMapView;
+
+const mapStateToProps = (state: any) => {
+  return {
+    country: state.logs.country
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    onFetchCountryInfo: () => dispatch(actions.fetchCountryInfo())
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(WorldMapView);

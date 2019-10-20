@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
+import { updateObject } from '../../shared/utility';
 import * as actions from '../../store/actions/'
 import './AdminPanel.scss';
 
-type tLocationLog = { timestamp: number, latitude: number, longitude: number };
+type tLocationLog = { timestamp: number, latitude: number, longitude: number, country: string };
 
 const AdminPanel = (props: any) => {
 
@@ -15,7 +16,8 @@ const AdminPanel = (props: any) => {
     const [locationLog, setLocationLog] = useState({
         timestamp: 0,
         latitude: 0,
-        longitude: 0
+        longitude: 0,
+        country: ''
     });
 
     const getLocation = () => {
@@ -23,13 +25,14 @@ const AdminPanel = (props: any) => {
             navigator.geolocation.getCurrentPosition(onLocationGetSuccess, onLocationGetFail, { enableHighAccuracy: true });
         }
     }
-    
+
     const onLocationGetSuccess = (position: any) => {
         const logDate = Date.now();
         const tempLocationLog = {
             timestamp: logDate,
             latitude: position.coords.latitude,
-            longitude: position.coords.longitude
+            longitude: position.coords.longitude,
+            country: locationLog.country
         }
         setLocationLog(tempLocationLog);
         const dateVal = new Date(tempLocationLog.timestamp).toLocaleString();
@@ -46,7 +49,8 @@ const AdminPanel = (props: any) => {
         setLocationLog({
             timestamp: locationLog.timestamp,
             latitude: trimmedLat,
-            longitude: trimmedLng
+            longitude: trimmedLng,
+            country: locationLog.country
         });
         const dateVal = new Date(locationLog.timestamp).toLocaleString();
         setMessage(`Logged: ${dateVal}, Lat: ${trimmedLat}, Long: ${trimmedLng}`);
@@ -61,10 +65,19 @@ const AdminPanel = (props: any) => {
         setLocationLog({
             timestamp: logDate,
             latitude: parseFloat(latManual),
-            longitude: parseFloat(lonManual)
+            longitude: parseFloat(lonManual),
+            country: locationLog.country
         });
         const dateVal = new Date(locationLog.timestamp).toLocaleString();
         setMessage(`Logged: ${dateVal}, Lat: ${locationLog.latitude}, Long: ${locationLog.longitude}`);
+    }
+
+    const countryChanged = (event: any) => {
+        const ctry = event.target.value;
+        const updatedLocation = updateObject(locationLog, {
+            country: ctry
+        });
+        setLocationLog(updatedLocation);
     }
 
     const manualPart = manual ? (
@@ -81,13 +94,18 @@ const AdminPanel = (props: any) => {
     return (
         <div className="admin-panel">
             <h1>Admin Panel</h1>
-            <button onClick={getLocation}>Get Location</button>
-            <button onClick={() => setManual(!manual)}>Log manually</button>
-            {manualPart}
-            <p>{message}</p>
-            <button onClick={trimLocation}>Trim location</button>
-            <button className="save-button" onClick={saveLocation}>Save</button>
-            <p>{props.responseMessage}</p>
+            <div className="location-logging">
+                <h1>Position logging</h1>
+                <button onClick={getLocation}>Get Location</button>
+                <button onClick={() => setManual(!manual)}>Log manually</button>
+                {manualPart}
+                <p>{message}</p>
+                <p>Country</p>
+                <input type="text" value={locationLog.country} onChange={countryChanged}></input>
+                <button onClick={trimLocation}>Trim location</button>
+                <button className="save-button" onClick={saveLocation}>Save</button>
+                <p>{props.responseMessage}</p>
+            </div>
         </div>
     )
 };
@@ -102,7 +120,7 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        onSaveLocationLog: (locationLog: tLocationLog, token: string, userId:string) => dispatch(actions.saveLocationLog(locationLog, token, userId)),
+        onSaveLocationLog: (locationLog: tLocationLog, token: string, userId: string) => dispatch(actions.saveLocationLog(locationLog, token, userId)),
     };
 };
 

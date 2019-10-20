@@ -2,7 +2,8 @@ export {
     auth
 } from './auth';
 export {
-    fetchLocations
+    fetchLocations,
+    fetchCountryInfo
 } from './locationLogs';
 export {    
     saveLocationLog,

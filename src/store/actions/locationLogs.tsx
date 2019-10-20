@@ -33,3 +33,29 @@ export const fetchLocations = () => {
         })
     }
 }
+
+const fetchCountryFail = (error: any) => {
+    return {
+        type: actionTypes.FETCH_COUNTRY_FAIL,
+        error: error
+    }
+}
+
+const fetchCountrySuccess = (res: any) => {
+    return {
+        type: actionTypes.FETCH_COUNTRY_SUCCESS,
+        data: res.data
+    }
+}
+
+export const fetchCountryInfo = () => {
+    return (dispatch: any) => {
+        axios.get('locationLogs.json?orderBy="$key"&limitToLast=1')
+        .then(res => {
+            dispatch(fetchCountrySuccess(res));
+        })
+        .catch(err => {
+            dispatch(fetchCountryFail(err));
+        })
+    }
+}
