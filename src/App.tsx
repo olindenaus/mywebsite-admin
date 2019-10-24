@@ -18,9 +18,7 @@ import './App.css';
 
 const App = (props: any) => {
 
-  if(props.isAuthenticated) {
-
-  }
+  const adminPanel = props.isAuthenticated ? <Route path="/admin" component={AdminPanel} /> : null;
 
   const routes = (
     <Switch>
@@ -29,7 +27,8 @@ const App = (props: any) => {
       <Route path='/timekeeper' component={TimeKeeper} />
       <Route path='/song' component={SongOfADay} />
       <Route path='/login' component={Auth} />
-      <Route path='/admin' component={AdminPanel} />
+      {/* <Route path='/admin' component={AdminPanel} /> */}
+      {adminPanel}
       <Route path='/logs' component={LogsHistory} />
       <Route path='/' component={WorldMapView} />
       <Redirect to='/' />
