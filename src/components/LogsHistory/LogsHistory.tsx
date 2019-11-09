@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import * as actions from '../../store/actions/index';
-
+import Groups from './Groups/Groups';
 import './LogsHistory.scss';
+
+type tGroup = { country: string | any, logs: any[], startTime: number, endTime: number };
+type tLocation = { country: string, timestamp: number, latitude: number, longitude: number };
 
 const LogsHistory = (props: any) => {
 
@@ -12,28 +14,58 @@ const LogsHistory = (props: any) => {
         props.onFetchLocationLogs();
     }, []);
 
-    const locations = Object.keys(props.locations).reverse()
-        .map((locationId: any) => {
-            const lat = props.locations[locationId].latitude;
-            const lng = props.locations[locationId].longitude;
-            const date = new Date(props.locations[locationId].timestamp);
-            const route = `https://maps.google.com/?q=${lat},${lng}`
-            return (
-                <li key={locationId} >
-                    <Link to={route} target="_blank" onClick={(event) => { event.preventDefault(); window.open(route); }}>
-                            ({lat}, {lng}), {date.toLocaleString()}
-                    </Link>
-                </li>
-            )
+    const countries = [...new Set(Object.keys(props.locations).map((id: any) => props.locations[id].country))];
 
+    const groupByCountriesAndDate = () => {
+        const locations = Object.keys(props.locations).map((id: any) => {
+            return props.locations[id];
         });
+        let currentCountry = '';
+        let currentGroup: tGroup = {
+            startTime: 0,
+            endTime: 0,
+            country: '',
+            logs: []
+        };
+        let groups: tGroup[] = [];
+        for (let i = 0; i < locations.length; i++) {
+            const location = locations[i];
+            const country = location.country;
+            if (country !== currentCountry) {
+                if (currentCountry === '') {
+                    addNewGroup(groups);
+                } else {                    
+                    addNewGroup(groups);
+                }
+                currentCountry = country;
+                currentGroup = groups[groups.length - 1];
+                currentGroup.startTime = location.timestamp;
+                currentGroup.endTime = location.timestamp;
+                currentGroup.country = location.country;
+                currentGroup.logs.push(location);
+            } else {
+                currentGroup.logs.push(location);
+                currentGroup.endTime = location.timestamp;
+            }
+        }
+        return groups;
+    };
+
+    const addNewGroup = (groups: tGroup[]) => {
+        groups.push({
+            startTime: 0,
+            endTime: 0,
+            country: '',
+            logs: []
+        });
+    }
 
     return (
         <div className={"locations-history"}>
             <div className={"logs-container"}>
-                <ul>
-                    {locations}
-                </ul>
+                <Groups
+                    groups={groupByCountriesAndDate}
+                />
             </div>
         </div>
     )
