@@ -8,7 +8,7 @@ const initialState = {
 };
 
 const fetchLocationsStart = (state: any, action: any) => {
-    return updateObject(state, { loading: false });
+    return updateObject(state, { loading: true });
 }
 
 const fetchLocationsSuccess = (state: any, action: any) => {

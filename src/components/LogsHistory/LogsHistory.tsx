@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import * as actions from '../../store/actions/index';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import Groups from './Groups/Groups';
 import './LogsHistory.scss';
 
@@ -34,7 +35,7 @@ const LogsHistory = (props: any) => {
             if (country !== currentCountry) {
                 if (currentCountry === '') {
                     addNewGroup(groups);
-                } else {                    
+                } else {
                     addNewGroup(groups);
                 }
                 currentCountry = country;
@@ -60,12 +61,20 @@ const LogsHistory = (props: any) => {
         });
     }
 
+    let groups = (
+        <Groups
+            groups={groupByCountriesAndDate}
+        />
+    )
+
+    if (props.loading) {
+        groups = <Spinner />
+    }
+
     return (
         <div className={"locations-history"}>
             <div className={"logs-container"}>
-                <Groups
-                    groups={groupByCountriesAndDate}
-                />
+                {groups}
             </div>
         </div>
     )
@@ -73,7 +82,8 @@ const LogsHistory = (props: any) => {
 
 const mapStateToProps = (state: any) => {
     return {
-        locations: state.logs.locations
+        locations: state.logs.locations,
+        loading: state.logs.loading
     }
 }
 
