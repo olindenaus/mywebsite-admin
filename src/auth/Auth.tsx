@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import Spinner from '../components/UI/Spinner/Spinner';
 
 import './Auth.scss';
 import * as actions from '../store/actions/index';
@@ -28,21 +29,31 @@ const Auth = (props: any) => {
         authRedirect = <Redirect to="/admin" />
     }
 
+    let form = (
+        <React.Fragment>
+            <div className="input-wrapper">
+                Login
+            <input type="email" value={login} onChange={updateLogin} />
+                <span className="underline"></span>
+            </div>
+            <div className="input-wrapper">
+                Password
+            <input type="password" value={password} onChange={updatePassword} />
+                <span className="underline"></span>
+            </div>
+            <button className="submit-button">Log In</button>
+        </React.Fragment>
+    );
+
+    if (props.loading) {
+        form = <Spinner />
+    }
+
     return (
         <div className="auth-form">
             {authRedirect}
             <form onSubmit={submitHandler}>
-                <div className="input-wrapper">
-                    Login
-                    <input type="email" value={login} onChange={updateLogin} />
-                    <span className="underline"></span>
-                </div>
-                <div className="input-wrapper">
-                    Password
-                <input type="password" value={password} onChange={updatePassword} />
-                    <span className="underline"></span>
-                </div>
-                <button className="submit-button">Log In</button>
+                {form}
             </form>
         </div>
     )
@@ -50,7 +61,8 @@ const Auth = (props: any) => {
 
 const mapStateToProps = (state: any) => {
     return {
-        isAuthenticated: state.auth.token !== null
+        isAuthenticated: state.auth.token !== null,
+        loading: state.auth.loading
     };
 };
 

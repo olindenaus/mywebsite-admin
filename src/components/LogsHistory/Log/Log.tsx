@@ -14,7 +14,7 @@ const log = (props: any) => {
 
     return (
         <div className="log" onClick={logClicked}>
-            ({lat}, {lng}), {date.toLocaleString()}
+            {date.toLocaleString()}
         </div>
     )
 };
