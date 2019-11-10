@@ -1,0 +1,16 @@
+.group-detail {
+    h1 {
+        margin-bottom: 0em;
+    }
+    h4 {
+        margin-top: 0em;
+    }
+
+    .logs {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;    
+        padding: 0 1em;
+        justify-content: space-around;
+    }
+}

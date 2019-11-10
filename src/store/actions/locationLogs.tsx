@@ -34,6 +34,12 @@ export const fetchLocations = () => {
     }
 }
 
+const fetchCountrySucces = () => {
+    return {
+        type: actionTypes.FETCH_COUNTRY_START
+    }
+}
+
 const fetchCountryFail = (error: any) => {
     return {
         type: actionTypes.FETCH_COUNTRY_FAIL,
@@ -50,6 +56,7 @@ const fetchCountrySuccess = (res: any) => {
 
 export const fetchCountryInfo = () => {
     return (dispatch: any) => {
+        dispatch(fetchCountrySucces());
         axios.get('locationLogs.json?orderBy="$key"&limitToLast=1')
         .then(res => {
             dispatch(fetchCountrySuccess(res));

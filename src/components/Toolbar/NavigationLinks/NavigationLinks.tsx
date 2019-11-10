@@ -13,6 +13,7 @@ const navigationLinks = (props: any) => {
             <NavLink to="/song">Song of a Day</NavLink>
             <NavLink to="/lorem">GFD</NavLink>
             <NavLink to="/ipsum">Coffee</NavLink>
+            <NavLink to="/login">Login</NavLink>
         </div>
     )
 };

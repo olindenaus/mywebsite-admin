@@ -3,7 +3,6 @@ import React from 'react';
 import './Log.scss';
 
 const log = (props: any) => {
-    console.log(props);
     const lat = props.location.latitude;
     const lng = props.location.longitude;
     const date = new Date(props.location.timestamp);

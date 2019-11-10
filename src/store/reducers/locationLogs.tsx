@@ -23,15 +23,21 @@ const fetchLocationsFail = (state: any, action: any) => {
     return updateObject(state, { loading: false })
 }
 
+const fetchCountryStart = (state: any, action: any) => {
+    return updateObject(state, {loading: true});
+}
+
 const fetchCountrySuccess = (state: any, action: any) => {
     const country = action.data[Object.keys(action.data)[0]].country;
     if(typeof country === 'undefined') {        
         return updateObject(state, {
-            country: '[no information] -> see logs below'
+            country: '[no information] -> see logs below',
+            loading: false
         });
     }
     return updateObject(state, {
-        country: country
+        country: country,
+        loading: false
     });
 }
 
@@ -48,6 +54,8 @@ const reducer = (state = initialState, action: any) => {
             return fetchLocationsSuccess(state, action);
         case actionTypes.FETCH_LOCATIONS_FAIL:
             return fetchLocationsFail(state, action);
+        case actionTypes.FETCH_COUNTRY_START:
+            return fetchCountryStart(state, action);
         case actionTypes.FETCH_COUNTRY_SUCCESS:
             return fetchCountrySuccess(state, action);
         case actionTypes.FETCH_LOCATIONS_FAIL:

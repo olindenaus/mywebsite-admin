@@ -8,6 +8,7 @@ import {
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
+import Spinner from '../UI/Spinner/Spinner';
 import * as actions from '../../store/actions/index';
 import './WorldMapView.scss';
 
@@ -29,12 +30,16 @@ const WorldMapView = (props: any) => {
     return v ? { default: { fill: "gray", stroke: "#000" } } : { default: { fill: '66ff66', stroke: "#000" } };
   }
 
+  let currentlyIn = <p>Currently in... {props.country}</p>;
 
+  if(props.loading) {
+    currentlyIn = <Spinner />
+  }
 
   return (
     <div className="map-view">
       <div className="info-panel">
-        <p>Currently in... {props.country}</p>
+        {currentlyIn}
         <NavLink to="/logs"><div>See locations' history</div></NavLink>
       </div>
       <ComposableMap width={1920} height={1080} projectionConfig={{ scale: 280 }}>
@@ -52,7 +57,8 @@ const WorldMapView = (props: any) => {
 
 const mapStateToProps = (state: any) => {
   return {
-    country: state.logs.country
+    country: state.logs.country,
+    loading: state.logs.loading
   }
 }
 
