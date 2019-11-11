@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import Modal from '../../UI/Modal/Modal';
+import Modal from '../../../components/UI/Modal/Modal';
 import Group from './Group/Group';
 import GroupDetails from './GroupDetails/GroupDetails';
 import './Groups.scss';

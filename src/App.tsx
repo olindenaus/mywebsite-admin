@@ -9,7 +9,7 @@ import TimeKeeper from './containers/Timekeeper/Timekeeper';
 import SongOfADay from './containers/SongOfADay/SongOfADay';
 import Auth from './auth/Auth';
 import AdminPanel from './containers/AdminPanel/AdminPanel';
-import LogsHistory from './components/LogsHistory/LogsHistory'
+import LogsHistory from './containers/LogsHistory/LogsHistory'
 import './App.css';
 
 // const TimeKeeper = React.lazy(()=> {
