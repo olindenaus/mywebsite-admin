@@ -4,10 +4,11 @@ import { updateObject } from '../../shared/utility';
 const initialState = {
     locations: [],
     loading: false,
-    country: ''
+    country: '',
+    errorMessage: ''
 };
 
-const fetchLocationsStart = (state: any, action: any) => {
+const fetchLocationsStart = (state: any) => {
     return updateObject(state, { loading: true });
 }
 
@@ -16,14 +17,18 @@ const fetchLocationsSuccess = (state: any, action: any) => {
     return updateObject(state, {
         loading: false,
         locations: action.locations,
+        errorMessage: ''
     })
 }
 
 const fetchLocationsFail = (state: any, action: any) => {
-    return updateObject(state, { loading: false })
+    return updateObject(state, { 
+        loading: false,
+        errorMessage: action.error
+     });
 }
 
-const fetchCountryStart = (state: any, action: any) => {
+const fetchCountryStart = (state: any) => {
     return updateObject(state, {loading: true});
 }
 
@@ -32,30 +37,34 @@ const fetchCountrySuccess = (state: any, action: any) => {
     if(typeof country === 'undefined') {        
         return updateObject(state, {
             country: '[no information] -> see logs below',
-            loading: false
+            loading: false,
+            errorMessage: ''
         });
     }
     return updateObject(state, {
         country: country,
-        loading: false
+        loading: false,
+        errorMessage: ''
     });
 }
 
 const fetchCountryFail = (state: any, action: any) => {
-    console.log(action);
-    return state;
+    return updateObject(state, {
+        errorMessage: action.error,
+        loading: false
+    });
 }
 
 const reducer = (state = initialState, action: any) => {
     switch (action.type) {
         case actionTypes.FETCH_LOCATIONS_START:
-            return fetchLocationsStart(state, action);
+            return fetchLocationsStart(state);
         case actionTypes.FETCH_LOCATIONS_SUCCESS:
             return fetchLocationsSuccess(state, action);
         case actionTypes.FETCH_LOCATIONS_FAIL:
             return fetchLocationsFail(state, action);
         case actionTypes.FETCH_COUNTRY_START:
-            return fetchCountryStart(state, action);
+            return fetchCountryStart(state);
         case actionTypes.FETCH_COUNTRY_SUCCESS:
             return fetchCountrySuccess(state, action);
         case actionTypes.FETCH_LOCATIONS_FAIL:

@@ -29,7 +29,7 @@ export const fetchLocations = () => {
             dispatch(fetchLocationsSuccess(res.data));         
         })
         .catch(err => {
-            dispatch(fetchLocationsFail(err));
+            dispatch(fetchLocationsFail(err.response.data.error));
         })
     }
 }
@@ -62,7 +62,7 @@ export const fetchCountryInfo = () => {
             dispatch(fetchCountrySuccess(res));
         })
         .catch(err => {
-            dispatch(fetchCountryFail(err));
+            dispatch(fetchCountryFail(err.response.data.error));
         })
     }
 }

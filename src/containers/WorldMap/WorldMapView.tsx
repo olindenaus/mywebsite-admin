@@ -32,14 +32,21 @@ const WorldMapView = (props: any) => {
 
   let currentlyIn = <p>Currently in... {props.country}</p>;
 
-  if(props.loading) {
+  if (props.loading) {
     currentlyIn = <Spinner />
   }
+
+  let errorMessage = null;
+  if (props.error !== '') {
+    errorMessage = <p>{props.error}</p>
+  }
+
 
   return (
     <div className="map-view">
       <div className="info-panel">
         {currentlyIn}
+        {errorMessage}
         <NavLink to="/logs"><div>See locations' history</div></NavLink>
       </div>
       <ComposableMap width={1920} height={1080} projectionConfig={{ scale: 280 }}>
@@ -58,7 +65,8 @@ const WorldMapView = (props: any) => {
 const mapStateToProps = (state: any) => {
   return {
     country: state.logs.country,
-    loading: state.logs.loading
+    loading: state.logs.loading,
+    error: state.logs.errorMessage
   }
 }
 
