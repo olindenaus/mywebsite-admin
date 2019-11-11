@@ -8,7 +8,7 @@ import {
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import Spinner from '../UI/Spinner/Spinner';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import * as actions from '../../store/actions/index';
 import './WorldMapView.scss';
 

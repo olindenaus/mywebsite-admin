@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import { updateObject } from '../../shared/utility';
-import * as actions from '../../store/actions/'
+import * as actions from '../../store/actions'
 import './AdminPanel.scss';
 
 type tLocationLog = { timestamp: number, latitude: number, longitude: number, country: string };

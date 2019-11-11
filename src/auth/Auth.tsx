@@ -29,6 +29,14 @@ const Auth = (props: any) => {
         authRedirect = <Redirect to="/admin" />
     }
 
+    let errorMessage = null;
+
+    if (props.error) {
+        errorMessage = (
+            <p>{props.error.message}</p>
+        );
+    };
+
     let form = (
         <React.Fragment>
             <div className="input-wrapper">
@@ -41,6 +49,7 @@ const Auth = (props: any) => {
             <input type="password" value={password} onChange={updatePassword} />
                 <span className="underline"></span>
             </div>
+                {errorMessage}
             <button className="submit-button">Log In</button>
         </React.Fragment>
     );
@@ -62,7 +71,8 @@ const Auth = (props: any) => {
 const mapStateToProps = (state: any) => {
     return {
         isAuthenticated: state.auth.token !== null,
-        loading: state.auth.loading
+        loading: state.auth.loading,
+        error: state.auth.error
     };
 };
 

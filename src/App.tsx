@@ -2,13 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
-import Layout from './components/Layout/Layout';
-import WorldMapView from './components/WorldMap/WorldMapView';
-import Trainings from './components/Trainings/Trainings';
-import TimeKeeper from './components/Timekeeper/Timekeeper';
-import SongOfADay from './components/SongOfADay/SongOfADay';
+import Layout from './components/UI/Layout/Layout';
+import WorldMapView from './containers/WorldMap/WorldMapView';
+import Trainings from './containers/Trainings/Trainings';
+import TimeKeeper from './containers/Timekeeper/Timekeeper';
+import SongOfADay from './containers/SongOfADay/SongOfADay';
 import Auth from './auth/Auth';
-import AdminPanel from './components/AdminPanel/AdminPanel';
+import AdminPanel from './containers/AdminPanel/AdminPanel';
 import LogsHistory from './components/LogsHistory/LogsHistory'
 import './App.css';
 

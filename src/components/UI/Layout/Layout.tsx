@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Media from 'react-media';
 import { NavLink } from 'react-router-dom';
 
-import Burger from '../Toolbar/Burger/Burger';
+import Burger from  '../Toolbar/Burger/Burger';
 import NavigationLinks from '../Toolbar/NavigationLinks/NavigationLinks';
 
 import SideNav from '../Toolbar/SideNav/SideNav';
