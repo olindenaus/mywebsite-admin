@@ -71,6 +71,14 @@ const LogsHistory = (props: any) => {
         groups = <Spinner />
     }
 
+    let errorMessage = null;
+
+    if(props.error !== '') {
+        errorMessage = (
+            <p>{props.error}</p>
+        )
+    }
+
     return (
         <div className={"locations-history"}>
             <div className={"logs-container"}>
@@ -83,7 +91,8 @@ const LogsHistory = (props: any) => {
 const mapStateToProps = (state: any) => {
     return {
         locations: state.logs.locations,
-        loading: state.logs.loading
+        loading: state.logs.loading,
+        error: state.logs.errorMessage
     }
 }
 
