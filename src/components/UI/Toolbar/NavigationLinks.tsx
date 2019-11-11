@@ -1,12 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import './NavigationLinks.scss';
-
-const navigationLinks = (props: any) => {
+const linksList = () => {
 
     return (
-        <div className='navigation-links'>
+        <React.Fragment>            
             <NavLink to="/" exact>Map</NavLink>
             <NavLink to="/trainings">Trainings</NavLink>
             <NavLink to="/timekeeper">TimeKeeper</NavLink>
@@ -14,7 +12,7 @@ const navigationLinks = (props: any) => {
             <NavLink to="/lorem">GFD</NavLink>
             <NavLink to="/ipsum">Coffee</NavLink>
             <NavLink to="/login">Login</NavLink>
-        </div>
+        </React.Fragment>
     )
 };
-export default navigationLinks;
+export default linksList;

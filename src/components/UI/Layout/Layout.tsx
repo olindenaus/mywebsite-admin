@@ -3,7 +3,7 @@ import Media from 'react-media';
 import { NavLink } from 'react-router-dom';
 
 import Burger from  '../Toolbar/Burger/Burger';
-import NavigationLinks from '../Toolbar/NavigationLinks/NavigationLinks';
+import NavigationLinks from '../Toolbar/ToolbarNavigation/ToolbarNavigation';
 
 import SideNav from '../Toolbar/SideNav/SideNav';
 import './Layout.scss';

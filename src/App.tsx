@@ -27,7 +27,6 @@ const App = (props: any) => {
       <Route path='/timekeeper' component={TimeKeeper} />
       <Route path='/song' component={SongOfADay} />
       <Route path='/login' component={Auth} />
-      {/* <Route path='/admin' component={AdminPanel} /> */}
       {adminPanel}
       <Route path='/logs' component={LogsHistory} />
       <Route path='/' component={WorldMapView} />
