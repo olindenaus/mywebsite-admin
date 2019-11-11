@@ -1,18 +1,35 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-const linksList = () => {
+const linksList = (props: any) => {
+
+    let personalContent = null;
+
+    if (props.isAuthenticated) {
+        personalContent = (
+            <React.Fragment>
+                <NavLink to="/lorem">GTD</NavLink>
+                <NavLink to="/ipsum">Coffee</NavLink>
+            </React.Fragment>
+        )
+    }
 
     return (
-        <React.Fragment>            
+        <React.Fragment>
             <NavLink to="/" exact>Map</NavLink>
             <NavLink to="/trainings">Trainings</NavLink>
             <NavLink to="/timekeeper">TimeKeeper</NavLink>
             <NavLink to="/song">Song of a Day</NavLink>
-            <NavLink to="/lorem">GFD</NavLink>
-            <NavLink to="/ipsum">Coffee</NavLink>
+            {personalContent}
             <NavLink to="/login">Login</NavLink>
         </React.Fragment>
     )
 };
-export default linksList;
+
+const mapStateToProps = (state: any) => {
+    return {
+        isAuthenticated: state.auth.token !== null
+    }
+}
+export default connect(mapStateToProps)(linksList);

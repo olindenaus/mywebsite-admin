@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import Log from '../../Log/Log';
 import './Group.scss';
