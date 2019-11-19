@@ -1,6 +1,7 @@
+@import '../../../main';
+
 .groups {
-    display: flex;
-    flex-direction: column;
+    @include column-flex;
     align-items: center;
     margin: 1em auto;
 }

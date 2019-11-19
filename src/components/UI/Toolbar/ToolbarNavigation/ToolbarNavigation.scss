@@ -1,4 +1,6 @@
 
+@import '../../../../main';
+
 .navigation-links {
     height: 100%;
     width: 80%;
@@ -12,8 +14,7 @@
         height: 100%;
         color: white;
         margin: 0 2%;
-        display: flex;
-        align-items: center;
+        @include column-flex;
         justify-content: center;
     }
 

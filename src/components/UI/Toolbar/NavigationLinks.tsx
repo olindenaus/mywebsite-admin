@@ -4,13 +4,14 @@ import { NavLink } from 'react-router-dom';
 
 const linksList = (props: any) => {
 
-    let personalContent = null;
+    let personalContent = <NavLink to="/login">Login</NavLink>;
 
     if (props.isAuthenticated) {
         personalContent = (
             <React.Fragment>
                 <NavLink to="/lorem">GTD</NavLink>
                 <NavLink to="/ipsum">Coffee</NavLink>
+                <NavLink to="/admin">Admin</NavLink>
             </React.Fragment>
         )
     }
@@ -21,8 +22,7 @@ const linksList = (props: any) => {
             <NavLink to="/trainings">Trainings</NavLink>
             <NavLink to="/timekeeper">TimeKeeper</NavLink>
             <NavLink to="/song">Song of a Day</NavLink>
-            {personalContent}
-            <NavLink to="/login">Login</NavLink>
+            {personalContent}            
         </React.Fragment>
     )
 };

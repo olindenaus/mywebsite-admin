@@ -1,9 +1,10 @@
+@import './../../../../main';
+
 .burger {
     background-color: #111;
     height: 100%;
     width: 55px;
-    display: flex;
-    flex-direction: column;
+    @include column-flex;
     justify-content: space-around;
     align-items: center;
     box-sizing: border-box;
