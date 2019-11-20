@@ -1,0 +1,30 @@
+.input {
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.input-element {
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+
+    &:focus {        
+    background-color: #ccc;
+    }
+}
+
+.invalid {
+    border: 2px solid red;
+    background-color: #fda409;
+}
+
+.validation-error {    
+    color: red;
+    margin: 5px 0;
+}

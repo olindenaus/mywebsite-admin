@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { updateObject } from '../../shared/utility';
+import { updateObject, checkValidity } from '../../shared/utility';
+import Input from '../../components/UI/Input/Input';
 import * as actions from '../../store/actions'
 import './AdminPanel.scss';
 
@@ -11,14 +12,53 @@ const AdminPanel = (props: any) => {
 
     const [message, setMessage] = useState('');
     const [manual, setManual] = useState(false);
-    const [latManual, setLatManual] = useState('');
-    const [lonManual, setLonManual] = useState('');
+    const [controls, setControls] = useState<string | any>({
+        lat: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'decimal',
+                placeholder: 'Latitude'
+            },
+            value: '',
+            validation: {
+                required: true,
+                decimal: true
+            },
+            valid: false,
+            touched: false
+        },
+        lon: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'decimal',
+                placeholder: 'Longitude'
+            },
+            value: '',
+            validation: {
+                required: true,
+                decimal: true
+            },
+            valid: false,
+            touched: false
+        }
+    });
     const [locationLog, setLocationLog] = useState({
         timestamp: 0,
         latitude: 0,
         longitude: 0,
         country: ''
     });
+
+    const inputChangedHandler = (event: any, id: string) => {
+        const updatedControls = updateObject(controls, {
+            [id]: updateObject(controls[id], {
+                value: event.target.value,
+                valid: checkValidity(event.target.value, controls[id].validation),
+                touched: true
+            })
+        });
+        setControls(updatedControls);
+    }
 
     const getLocation = () => {
         if (navigator.geolocation) {
@@ -62,14 +102,16 @@ const AdminPanel = (props: any) => {
 
     const setLogManually = () => {
         const logDate = Date.now();
+        const lat = controls['lat']['value'];
+        const lon = controls.lon.value;
         setLocationLog({
             timestamp: logDate,
-            latitude: parseFloat(latManual),
-            longitude: parseFloat(lonManual),
+            latitude: parseFloat(lat),
+            longitude: parseFloat(lon),
             country: locationLog.country
         });
-        const dateVal = new Date(locationLog.timestamp).toLocaleString();
-        setMessage(`Logged: ${dateVal}, Lat: ${locationLog.latitude}, Long: ${locationLog.longitude}`);
+        const dateVal = new Date(logDate).toLocaleString();
+        setMessage(`Logged: ${dateVal}, Lat: ${lat}, Long: ${lon}`);
     }
 
     const countryChanged = (event: any) => {
@@ -80,14 +122,32 @@ const AdminPanel = (props: any) => {
         setLocationLog(updatedLocation);
     }
 
+    const formElementsArray = [];
+    for (let key in controls) {
+        formElementsArray.push({
+            id: key,
+            config: controls[key]
+        })
+    }
+
+    let inputs = formElementsArray.map(formElement => (
+        <Input
+            label={formElement.config.elementConfig.placeholder}
+            key={formElement.id}
+            elementType={formElement.config.elementType}
+            elementConfig={formElement.config.elementConfig}
+            value={formElement.config.value}
+            invalid={!formElement.config.valid}
+            shouldValidate={formElement.config.validation}
+            touched={formElement.config.touched}
+            changed={(event: any) => inputChangedHandler(event, formElement.id)}
+        />
+    ));
+
     const manualPart = manual ? (
         <div>
-            <p>Latitude</p>
-            <input onChange={(e) => setLatManual(e.target.value)} type="decimal" value={latManual}></input>
-            <p>Longitude</p>
-            <input onChange={(e) => setLonManual(e.target.value)} type="decimal" value={lonManual}></input>
-            <br></br>
-            <button onClick={setLogManually}>Log</button>
+            {inputs}
+            <button onClick={setLogManually}>Check output</button>
         </div>
     ) : null;
 
