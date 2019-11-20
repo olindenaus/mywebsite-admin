@@ -19,24 +19,24 @@ const App = (props: any) => {
   const adminPanel = props.isAuthenticated ? <Route path="/admin" component={AdminPanel} /> : null;
 
   const routes = (
-    <React.Suspense fallback={<Spinner />}>
-      <Switch>
-        <Route path='/map' component={WorldMapView} />
-        <Route path='/trainings' component={Trainings} />
-        <Route path='/timekeeper' component={TimeKeeper} />
-        <Route path='/song' component={SongOfADay} />
-        <Route path='/login' component={Auth} />
-        {adminPanel}
-        <Route path='/logs' component={LogsHistory} />
-        <Route path='/' component={WorldMapView} />
-        <Redirect to='/' />
-      </Switch>
-    </React.Suspense>
+    <Switch>
+      <Route path='/map' component={WorldMapView} />
+      <Route path='/trainings' component={Trainings} />
+      <Route path='/timekeeper' component={TimeKeeper} />
+      <Route path='/song' component={SongOfADay} />
+      <Route path='/login' component={Auth} />
+      {adminPanel}
+      <Route path='/logs' component={LogsHistory} />
+      <Route path='/' component={WorldMapView} />
+      <Redirect to='/' />
+    </Switch>
   );
   return (
-    <Layout >
-      {routes}
-    </Layout>
+    <React.Suspense fallback={<Spinner />}>
+      <Layout >
+        {routes}
+      </Layout>
+    </React.Suspense >
   );
 }
 
