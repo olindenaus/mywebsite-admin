@@ -7,13 +7,12 @@
 }
 
 .group-info {
+    @include black-n-white;
+    @include column-flex;
     font-weight: bold;;
     min-width: 90%;
     padding: 10px 12px;
-    background-color: #000;
-    color: #fff;
     border-radius: 4px;
-    @include column-flex;
     box-sizing: border-box;
 
     &:hover {

@@ -39,8 +39,7 @@ form {
     }
 
     .submit-button {
-        background-color: black;
-        color: white;
+        @include black-n-white;
         border: none;
         box-sizing: border-box;
         font-size: 1.2em;
@@ -48,11 +47,10 @@ form {
         width: 6em;
         border-radius: 2px;
         box-shadow: 0 0 5px 2px rgb(24, 23, 23);
+        cursor: pointer;
 
         &:hover{
-            cursor: pointer;
-            background-color: white;
-            color: black;
+            @include white-n-black;
             box-shadow: 0 0 5px 2px rgb(175, 163, 163);
         }
     }

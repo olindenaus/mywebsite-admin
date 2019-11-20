@@ -1,3 +1,5 @@
+@import '../../main';
+
 .map-view {
 
     .info-panel {
@@ -20,8 +22,7 @@
                 cursor: pointer;
 
                 &:hover{
-                    background-color: white;
-                    color: black;
+                    @include white-n-black;
                     border: none;
                     box-shadow: 0 0 2px 5px rgb(233, 227, 227);
                 }

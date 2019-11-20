@@ -39,8 +39,7 @@
 
 .footer {
     grid-area: footer;
-    background-color: white;
-    color: black;
+    @include white-n-black;
 
         a {
             text-decoration: none;

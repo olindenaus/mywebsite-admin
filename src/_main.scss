@@ -8,3 +8,13 @@
     align-items: center;
     justify-content: center;
 }
+
+@mixin white-n-black {
+    background-color: white;
+    color: black;
+}
+
+@mixin black-n-white {
+    background-color: black;
+    color: white;
+}

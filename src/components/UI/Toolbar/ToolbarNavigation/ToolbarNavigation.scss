@@ -19,8 +19,7 @@
     }
 
     .active, a:active {
-        background-color: white;
-        color: black;
+        @include white-n-black;
     }
 
     >:hover {
