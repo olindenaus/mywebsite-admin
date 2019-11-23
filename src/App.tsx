@@ -8,7 +8,7 @@ import Spinner from './components/UI/Spinner/Spinner';
 import './App.css';
 
 const Trainings = lazy(() => { return import('./containers/Trainings/Trainings') });
-const TimeKeeper = lazy(() => { return import('./containers/Timekeeper/Timekeeper'); });
+const TimeTracker = lazy(() => { return import('./containers/Timetracker/Timetracker'); });
 const Auth = lazy(() => { return import('./auth/Auth'); });
 const AdminPanel = lazy(() => { return import('./containers/AdminPanel/AdminPanel'); });
 const LogsHistory = lazy(() => { return import('./containers/LogsHistory/LogsHistory'); });
@@ -22,7 +22,7 @@ const App = (props: any) => {
     <Switch>
       <Route path='/map' component={WorldMapView} />
       <Route path='/trainings' component={Trainings} />
-      <Route path='/timekeeper' component={TimeKeeper} />
+      <Route path='/timekeeper' component={TimeTracker} />
       <Route path='/song' component={SongOfADay} />
       <Route path='/login' component={Auth} />
       {adminPanel}

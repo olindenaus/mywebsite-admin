@@ -20,7 +20,7 @@ const linksList = (props: any) => {
         <React.Fragment>
             <NavLink to="/" exact>Map</NavLink>
             <NavLink to="/trainings">Trainings</NavLink>
-            <NavLink to="/timekeeper">TimeKeeper</NavLink>
+            <NavLink to="/timekeeper">TimeTracker</NavLink>
             <NavLink to="/song">Song of a Day</NavLink>
             {personalContent}            
         </React.Fragment>
