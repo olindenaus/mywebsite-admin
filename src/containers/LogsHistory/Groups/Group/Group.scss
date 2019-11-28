@@ -16,6 +16,6 @@
     box-sizing: border-box;
 
     &:hover {
-        background-color: rgb(50, 50, 50);
+        background-color: map-get($colors, "theme-brownish");
     }
 }
