@@ -1,20 +1,22 @@
+@import '../../../main';
+
 .modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    @include rgbaVal('background', #000, 0.6);
   }
   
   .modal-main {
-    position:fixed;
-    background: white;
+    position: fixed;
+    background: map-get($colors, "theme-white");
     min-width: 50%;
     max-width: 80%;
     height: 90%;
-    top:50%;
-    left:50%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%,-50%);
     overflow: auto;
     border-radius: 10px;
@@ -32,12 +34,12 @@
     margin: 1em;
     padding: 0.5em 0.5em;
     font-size: 1em;
-    color: #fff;
-    background-color: black;
+    color: map-get($colors, "theme-white");
+    background-color: map-get($colors, "theme-black");
     border: none;
     cursor: pointer;
 
     &:hover {
-      background-color: rgb(50,50,50);      
+      background-color: map-get($colors, "theme-brownish");
     }
   }

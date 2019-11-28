@@ -1,17 +1,19 @@
+@import '../../../main';
+
 .log {
     width: 100px;
     font-weight: 400;
     margin: 6px 6px;
     padding: 6px 24px;
-    background-color: #000;
-    color: #fff;
+    background-color: map-get($colors, "theme-black");;
+    color: map-get($colors, "theme-white");;
     border-radius: 4px;
     line-height: 2em;
     cursor: pointer;
     transition: box-shadow 0.2s ease-in-out, background-color 0.2 ease-in-out;
 
     &:hover {
-        background-color: rgb(50, 50, 50);
-        box-shadow: inset 0px 0px 10px 10px #000;
+        background-color: map-get($colors, "theme-brownish");
+        box-shadow: inset 0px 0px 10px 10px map-get($colors, "theme-black");
     }
 }

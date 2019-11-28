@@ -1,3 +1,5 @@
+@import "../../../main";
+
 .input {
     padding: 5px;
     box-sizing: border-box;
@@ -11,20 +13,20 @@
 
 .input-element {
     border-radius: 3px;
-    border: 1px solid #ccc;
+    border: 1px solid map-get($colors, "ccc");
     padding: 6px 10px;
 
     &:focus {        
-    background-color: #ccc;
+    background-color: map-get($colors, "ccc");
     }
 }
 
 .invalid {
-    border: 2px solid red;
-    background-color: #fda409;
+    border: 2px solid map-get($colors, "red");
+    background-color: map-get($colors, "orange");
 }
 
 .validation-error {    
-    color: red;
+    color: map-get($colors, "red");
     margin: 5px 0;
 }

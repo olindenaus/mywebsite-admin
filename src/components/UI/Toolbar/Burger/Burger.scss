@@ -1,7 +1,7 @@
 @import './../../../../main';
 
 .burger {
-    background-color: #111;
+    background-color: map-get($colors, 'theme-dark');
     height: 100%;
     width: 55px;
     @include column-flex;
@@ -11,7 +11,7 @@
     padding: 5px 0;
 
     & > div {
-        background-color: white;
+        background-color: map-get($colors, 'theme-white');
         border-radius: 5px;
         height: 5px;
         width: 35px;

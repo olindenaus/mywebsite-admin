@@ -9,7 +9,7 @@
 
         a {
             text-decoration: none;
-            color: white;
+            color: map-get($colors, "theme-white");
             font-weight: bold;
 
             div {
@@ -17,14 +17,14 @@
                 line-height: 2em;
                 border-radius: 5px;
                 margin: 0 auto;
-                background-color: black;
-                box-shadow: 0 0 2px 5px rgb(24, 23, 23);
+                background-color: map-get($colors, "theme-black");
+                box-shadow: 0 0 2px 5px map-get($colors, "theme-brownish");
                 cursor: pointer;
 
                 &:hover{
                     @include white-n-black;
                     border: none;
-                    box-shadow: 0 0 2px 5px rgb(233, 227, 227);
+                    box-shadow: 0 0 2px 5px map-get($colors,"theme-bright");
                 }
             }
         }

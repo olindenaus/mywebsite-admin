@@ -1,3 +1,11 @@
+$colors: ("theme-brownish": rgb(50, 50, 50), "theme-grey": #ccc,
+            "orange": #fda409, "red": #f00, "theme-white": white, "theme-black": black,
+            "theme-dark": #111, "theme-bright": #f1f1f1);
+
+@mixin rgbaVal($color-property, $value, $alpha) {
+    #{$color-property}: rgba($value, $alpha)
+}
+
 @mixin column-flex {
     display: flex;
     flex-direction: column;
@@ -10,11 +18,11 @@
 }
 
 @mixin white-n-black {
-    background-color: white;
-    color: black;
+    background-color: map-get($colors, "theme-white");
+    color: map-get($colors, "theme-black");
 }
 
 @mixin black-n-white {
-    background-color: black;
-    color: white;
+    background-color:map-get($colors, "theme-black");
+    color: map-get($colors, "theme-white");
 }
