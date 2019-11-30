@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-const linksList = (props: any) => {
+export const NavigationLinks = (props: any) => {
 
     let personalContent = <NavLink to="/login">Login</NavLink>;
 
@@ -32,4 +32,4 @@ const mapStateToProps = (state: any) => {
         isAuthenticated: state.auth.token !== null
     }
 }
-export default connect(mapStateToProps)(linksList);
+export default connect(mapStateToProps)(NavigationLinks);
