@@ -13,7 +13,6 @@ const fetchLocationsStart = (state: any) => {
 }
 
 const fetchLocationsSuccess = (state: any, action: any) => {
-    console.log(action)
     return updateObject(state, {
         loading: false,
         locations: action.locations,
