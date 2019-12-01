@@ -9,13 +9,13 @@ import './LogsHistory.scss';
 type tGroup = { country: string | any, logs: any[], startTime: number, endTime: number };
 type tLocation = { country: string, timestamp: number, latitude: number, longitude: number };
 
-const LogsHistory = (props: any) => {
+export const LogsHistory = (props: any) => {
 
     useEffect(() => {
         props.onFetchLocationLogs();
     }, []);
 
-    const countries = [...new Set(Object.keys(props.locations).map((id: any) => props.locations[id].country))];
+    // const countries = [...new Set(Object.keys(props.locations).map((id: any) => props.locations[id].country))];
 
     const groupByCountriesAndDate = () => {
         const locations = Object.keys(props.locations).map((id: any) => {
@@ -83,6 +83,7 @@ const LogsHistory = (props: any) => {
         <div className={"locations-history"}>
             <div className={"logs-container"}>
                 {groups}
+                {errorMessage}
             </div>
         </div>
     )

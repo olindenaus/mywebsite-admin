@@ -19,7 +19,7 @@ const visitedCountries = ['POL', 'ARE', 'CHN', 'DEU', 'CHE', 'ITA', 'FRA', 'ESP'
   'PRT', 'ISL', 'FIN', 'DNK', 'SWE', 'HRV', 'TUR', 'GRC',
   'ISR', 'CZE', 'SVK', 'SVN', 'AUT'];
 
-const WorldMapView = (props: any) => {
+export const WorldMapView = (props: any) => {
 
   useEffect(() => {
     props.onFetchCountryInfo();
