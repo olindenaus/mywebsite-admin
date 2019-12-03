@@ -25,7 +25,7 @@ const Layout = (props: any) => {
     }
 
     const navigation = (
-        <Media query="(max-width: 520px)">
+        <Media query="(max-width: 800px)">
             {matches =>
                 matches ? (<React.Fragment><Burger clicked={burgerClicked} />
                     <SideNav width={sideWidth} closeClicked={handleSideNavClose}/>

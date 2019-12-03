@@ -1,7 +1,8 @@
 @import '../../main';
 
 .map-view {
-
+    height: 100%;
+    @include column-flex;
     .info-panel {
         margin: 0;
         position: relative;

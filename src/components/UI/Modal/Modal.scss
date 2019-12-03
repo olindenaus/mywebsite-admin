@@ -20,6 +20,10 @@
     transform: translate(-50%,-50%);
     overflow: auto;
     border-radius: 10px;
+
+    @media (max-width: 520px) {
+      min-width: 98%;
+    }
   }
   
   .display-block {

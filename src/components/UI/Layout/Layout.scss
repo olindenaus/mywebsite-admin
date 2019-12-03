@@ -1,29 +1,22 @@
 @import './../../../main';
 
 .layout {
-    min-height: 100vh;
+    // min-height: 100vh;
     text-align: center;
     display: grid;
-    grid-template-columns: repeat(4, 25%);
-    grid-template-rows: 8vh auto minmax(2vh, 3vh);
-    grid-template-areas: "header header header header"
-                        "main main main main"
-                        "footer footer footer footer";
+    grid-template-columns: 100%;
+    grid-template-rows: 3rem auto 2rem;
+    grid-template-areas: "header"
+                        "main"
+                        "footer";
 }
 
-@media (max-width: 520px) {
+@media (max-width: 640px) {
     .layout {
-        @include column-flex;
-        align-content: stretch;
-        overflow: auto;
-
-        .toolbar {
-            height: 50px;
-        }
+        grid-template-rows: 3rem auto 2rem;
 
         .content {
             @include column-flex;
-            justify-content: center;
         }
     }
 }
@@ -44,5 +37,6 @@
         a {
             text-decoration: none;
             color: map-get($colors, "theme-black");
+            vertical-align: middle;
         }
 }

@@ -49,7 +49,7 @@ export const WorldMapView = (props: any) => {
         {errorMessage}
         <NavLink to="/logs"><div>See locations' history</div></NavLink>
       </div>
-      <ComposableMap width={1920} height={1080} projectionConfig={{ scale: 280 }}>
+      <ComposableMap width={1920} height={1080} style={{width: "100%", height: "100%"}} projectionConfig={{scale: 360}}>
         <Graticule stroke="#ff5533" Globe={true} />
         <Geographies geography={geoUrl}>
           {({ geographies }: any) => geographies.map((geo: any) => {

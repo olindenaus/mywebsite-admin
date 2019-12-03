@@ -61,11 +61,7 @@ export const LogsHistory = (props: any) => {
         });
     }
 
-    let groups = (
-        <Groups
-            groups={groupByCountriesAndDate}
-        />
-    )
+    let groups = <Groups groups={groupByCountriesAndDate} />;
 
     if (props.loading) {
         groups = <Spinner />
@@ -73,7 +69,7 @@ export const LogsHistory = (props: any) => {
 
     let errorMessage = null;
 
-    if(props.error !== '') {
+    if (props.error !== '') {
         errorMessage = (
             <p>{props.error}</p>
         )

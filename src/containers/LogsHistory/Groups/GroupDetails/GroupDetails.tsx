@@ -11,10 +11,8 @@ const groupDetails = (props: any) => {
         <div className="group-detail">
             <h1>{props.country}</h1>
             <h4>{startTime} - {endTime}</h4>
-            <div style={{display: 'flex', justifyContent:'center'}}>
-                <div className="logs">
-                    {props.logs}
-                </div>
+            <div className="logs">
+                {props.logs}
             </div>
         </div>
     )
