@@ -2,19 +2,22 @@ import React, { useState } from 'react';
 import Media from 'react-media';
 import { NavLink } from 'react-router-dom';
 
-import Burger from  '../Toolbar/Burger/Burger';
+import Burger from '../Toolbar/Burger/Burger';
 import NavigationLinks from '../Toolbar/ToolbarNavigation/ToolbarNavigation';
 
+import Backdrop from '../Backdrop/Backdrop';
 import SideNav from '../Toolbar/SideNav/SideNav';
 import './Layout.scss';
 
 const Layout = (props: any) => {
 
     const [sideWidth, setSideWidth] = useState('0');
+    const [showBackdrop, setShowBackdrop] = useState(false);
 
     const burgerClicked = () => {
         if (sideWidth === '0') {
             setSideWidth('250px');
+            setShowBackdrop(true);
         } else {
             setSideWidth('0');
         }
@@ -22,13 +25,15 @@ const Layout = (props: any) => {
 
     const handleSideNavClose = () => {
         setSideWidth('0');
+        setShowBackdrop(false);
     }
 
     const navigation = (
         <Media query="(max-width: 800px)">
             {matches =>
                 matches ? (<React.Fragment><Burger clicked={burgerClicked} />
-                    <SideNav width={sideWidth} closeClicked={handleSideNavClose}/>
+                    <Backdrop show={showBackdrop} clicked={handleSideNavClose}/>  
+                    <SideNav width={sideWidth} closeClicked={handleSideNavClose} />
                 </React.Fragment>)
                     : <NavigationLinks />}
         </Media>
@@ -37,7 +42,7 @@ const Layout = (props: any) => {
     const intViewportHeight = window.innerHeight;
 
     return (
-        <div className="layout" style={{minHeight: intViewportHeight}}>
+        <div className="layout" style={{ minHeight: intViewportHeight }}>
             <div className="toolbar">
                 {navigation}
             </div>

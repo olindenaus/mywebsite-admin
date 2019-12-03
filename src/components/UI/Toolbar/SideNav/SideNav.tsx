@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Backdrop from '../../Backdrop/Backdrop';
 import NavigationLinks from '../NavigationLinks';
 import './SideNav.scss';
 

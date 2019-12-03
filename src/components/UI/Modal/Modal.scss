@@ -1,54 +1,44 @@
 @import '../../../main';
 
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    @include rgbaVal('background', #000, 0.6);
-  }
+.modal-main {
+  position: fixed;
+  z-index: 100;
+  background-color: map-get($colors, "theme-white");
+  padding: 1rem;
+  min-height: 30%;
+  max-height: 80%;
+  border: 1px solid map-get($colors, "theme-grey");
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  box-sizing: border-box;  
+  transition: all 0.3s ease-out;
+  overflow: auto;
+  border-radius: 10px;
   
-  .modal-main {
-    position: fixed;
-    background: map-get($colors, "theme-white");
-    min-width: 50%;
-    max-width: 80%;
-    min-height: 30%;
-    max-height: 80%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    overflow: auto;
-    border-radius: 10px;
-
-    @media (max-width: 700px) {
-      min-width: 70%;
-    }
-
-    @media (max-width: 520px) {
-      min-width: 90%;
-    }
-  }
-  
-  .display-block {
-    display: block;
-  }
-  
-  .display-none {
-    display: none;
+  @media (min-width: 320px) {
+   width: 340px;
   }
 
-  .exit-modal {
-    margin: 1em;
-    padding: 0.5em 0.5em;
-    font-size: 1em;
-    color: map-get($colors, "theme-white");
-    background-color: map-get($colors, "theme-black");
-    border: none;
-    cursor: pointer;
-
-    &:hover {
-      background-color: map-get($colors, "theme-brownish");
-    }
+  @media (min-width: 480px) {
+    width: 450px;
   }
+
+  @media (min-width: 720px) {
+    width: 700px;
+  }
+
+  @media (min-width: 900px) {
+    width: 880px;
+  }
+}
+
+
+  //   @media (max-width: 700px) {
+  //     min-width: 70%;
+  //   }
+
+  //   @media (max-width: 520px) {
+  //     min-width: 90%;
+  //   }
+  // }

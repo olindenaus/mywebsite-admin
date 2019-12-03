@@ -1,0 +1,11 @@
+@import '../../../main';
+
+.backdrop {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 50;
+    left:0;
+    top: 0;
+    @include rgbaVal('background-color', #000, 0.5);
+}
