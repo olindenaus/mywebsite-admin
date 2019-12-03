@@ -14,15 +14,20 @@
     background: map-get($colors, "theme-white");
     min-width: 50%;
     max-width: 80%;
-    height: 90%;
+    min-height: 30%;
+    max-height: 80%;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     overflow: auto;
     border-radius: 10px;
 
+    @media (max-width: 700px) {
+      min-width: 70%;
+    }
+
     @media (max-width: 520px) {
-      min-width: 98%;
+      min-width: 90%;
     }
   }
   
