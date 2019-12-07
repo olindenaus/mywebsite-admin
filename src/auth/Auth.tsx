@@ -38,7 +38,7 @@ const Auth = (props: any) => {
     };
 
     let form = (
-        <React.Fragment>
+        <>
             <div className="input-wrapper">
                 Login
             <input type="email" value={login} onChange={updateLogin} />
@@ -51,7 +51,7 @@ const Auth = (props: any) => {
             </div>
                 {errorMessage}
             <button className="submit-button">Log In</button>
-        </React.Fragment>
+        </>
     );
 
     if (props.loading) {

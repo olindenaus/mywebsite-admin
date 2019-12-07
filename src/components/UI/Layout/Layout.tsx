@@ -31,10 +31,10 @@ const Layout = (props: any) => {
     const navigation = (
         <Media query="(max-width: 800px)">
             {matches =>
-                matches ? (<React.Fragment><Burger clicked={burgerClicked} />
+                matches ? (<><Burger clicked={burgerClicked} />
                     <Backdrop show={showBackdrop} clicked={handleSideNavClose}/>  
                     <SideNav width={sideWidth} closeClicked={handleSideNavClose} />
-                </React.Fragment>)
+                </>)
                     : <NavigationLinks />}
         </Media>
     )

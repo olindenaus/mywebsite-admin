@@ -6,7 +6,7 @@ import './Modal.scss';
 const modal = (props: any) => {
 
   return (
-    <React.Fragment>
+    <>
         <Backdrop show={props.show} clicked={props.handleClose} />
         <div
           className="modal-main"
@@ -17,7 +17,7 @@ const modal = (props: any) => {
         >
           {props.children}
         </div>
-    </React.Fragment>
+    </>
   );
 };
 export default modal;

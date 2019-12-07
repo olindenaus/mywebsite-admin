@@ -8,22 +8,22 @@ export const NavigationLinks = (props: any) => {
 
     if (props.isAuthenticated) {
         personalContent = (
-            <React.Fragment>
+            <>
                 <NavLink to="/lorem">GTD</NavLink>
                 <NavLink to="/ipsum">Coffee</NavLink>
                 <NavLink to="/admin">Admin</NavLink>
-            </React.Fragment>
+            </>
         )
     }
 
     return (
-        <React.Fragment>
+        <>
             <NavLink to="/" exact>Map</NavLink>
             <NavLink to="/trainings">Trainings</NavLink>
             <NavLink to="/timekeeper">TimeTracker</NavLink>
             <NavLink to="/song">Song of a Day</NavLink>
             {personalContent}            
-        </React.Fragment>
+        </>
     )
 };
 
