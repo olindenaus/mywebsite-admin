@@ -17,6 +17,7 @@
 
         .content {
             @include column-flex;
+            align-items: center;
         }
     }
 }

@@ -15,6 +15,7 @@ const modal = (props: any) => {
             opacity: props.show ? '1' : '0'
           }}
         >
+          <span className={"btnClose"} onClick={props.handleClose}>&times;</span>
           {props.children}
         </div>
     </>

@@ -5,7 +5,7 @@
   z-index: 100;
   background-color: map-get($colors, "theme-white");
   padding: 1rem;
-  min-height: 30%;
+  min-height: 15%;
   max-height: 80%;
   border: 1px solid map-get($colors, "theme-grey");
   left: 50%;
@@ -15,6 +15,14 @@
   transition: all 0.3s ease-out;
   overflow: auto;
   border-radius: 10px;
+
+  .btnClose {
+    font-size: 2rem;
+    position: absolute;
+    right: 2rem;
+    top: 1rem;
+    cursor: pointer;
+  }
   
   @media (min-width: 320px) {
    width: 340px;

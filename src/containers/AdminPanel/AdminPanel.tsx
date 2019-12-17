@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { updateObject, checkValidity } from '../../shared/utility';
 import Input from '../../components/UI/Input/Input';
+import Modal from '../../components/UI/Modal/Modal';
 import * as actions from '../../store/actions'
 import './AdminPanel.scss';
 
@@ -10,6 +11,7 @@ type tLocationLog = { timestamp: number, latitude: number, longitude: number, co
 
 const AdminPanel = (props: any) => {
 
+    const [showPopup, setShowPopup] = useState(true);
     const [message, setMessage] = useState('');
     const [manual, setManual] = useState(false);
     const [controls, setControls] = useState<string | any>({
@@ -98,6 +100,7 @@ const AdminPanel = (props: any) => {
 
     const saveLocation = () => {
         props.onSaveLocationLog(locationLog, props.token, props.userId);
+        setShowPopup(true);
     }
 
     const setLogManually = () => {
@@ -150,6 +153,13 @@ const AdminPanel = (props: any) => {
             <button onClick={setLogManually}>Check output</button>
         </div>
     ) : null;
+    const condition = (props.responseMessage !== '' && showPopup)
+    let modal = condition ?
+        <Modal
+            handleClose={() => setShowPopup(false)}
+            show={showPopup}
+        ><p>{props.responseMessage}</p>
+        </Modal> : null;
 
     return (
         <div className="admin-panel">
@@ -164,7 +174,7 @@ const AdminPanel = (props: any) => {
                 <input type="text" value={locationLog.country} onChange={countryChanged}></input>
                 <button onClick={trimLocation}>Trim location</button>
                 <button className="save-button" onClick={saveLocation}>Save</button>
-                <p>{props.responseMessage}</p>
+                {modal}
             </div>
         </div>
     )

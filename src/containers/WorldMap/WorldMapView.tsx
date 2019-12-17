@@ -41,7 +41,6 @@ export const WorldMapView = (props: any) => {
     errorMessage = <p>{props.error}</p>
   }
 
-
   return (
     <div className="map-view">
       <div className="info-panel">

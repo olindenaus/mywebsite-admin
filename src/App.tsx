@@ -32,10 +32,10 @@ const App = (props: any) => {
     </Switch>
   );
   return (
-    <Layout >
+    <Layout>
       <React.Suspense fallback={<Spinner />}>
         {routes}
-      </React.Suspense >
+      </React.Suspense>
     </Layout>
   );
 }
