@@ -8,7 +8,7 @@ const summary = (props: any) => {
         <div className="summary">
             <div>No. of tasks: #</div>
             <div>Hours in total: #h</div>
-            <div>Most consuming task: task #3</div>
+            <div>Most consuming task: #3</div>
         </div>
     )
 };

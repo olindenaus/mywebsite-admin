@@ -1,4 +1,52 @@
+$left-text-margin: -1.5em;
+
 .scale {
-    border: 1px solid black;
-    max-width: 10%;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    width: 90%;
+    height: 640px;
+    display: grid;
+    grid-template-rows: repeat(4, 25%);
+    align-items: stretch;
+    position: relative;
+    justify-items: center;
+}
+
+.row {
+    position: relative;
+    min-width: 100%;    
+    border-bottom: 1px solid black;
+}
+
+.top-text {
+    span{
+        position: absolute;
+        top: -0.8em;
+        left: $left-text-margin;
+    }
+}
+
+.bot-text {
+    span {
+        position: absolute;
+        bottom: -0.5em;
+        left: $left-text-margin;
+        
+    }
+}
+
+.fourth {
+    // border-bottom: 1px solid black;
+    border-top: 1px solid black;
+}
+
+.third {
+    // border-bottom: 1px solid black;
+}
+
+.second {
+    // border-bottom: 1px solid black;
+}
+
+.first {
 }
