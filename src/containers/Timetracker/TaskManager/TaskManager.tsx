@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './TaskManager.scss';
 
-const taskManager = (props: any) => {
+const TaskManager = (props: any) => {
 
     return (
         <div className="task-manager">
             Task Manager
-            <button>+ Add task</button>
+            <button onClick={props.clicked}>+ Add task</button>
         </div>
     )
 };
-export default taskManager;
+export default TaskManager;

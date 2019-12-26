@@ -8,3 +8,7 @@ export {
 export {    
     saveLocationLog,
 } from './admin';
+export {
+    addTask,
+    updateTask
+} from './timetracker';

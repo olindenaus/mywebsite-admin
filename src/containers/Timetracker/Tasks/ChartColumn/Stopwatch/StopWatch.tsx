@@ -13,7 +13,8 @@ const Stopwatch = (props: any) => {
         updateDisplayTime(time);
     }, [time]);
 
-    const toggleTimer = () => {
+    const toggleTimer = () => {        
+        props.clicked(time);
         if (running) {
             setRunning(false);
             stop();
@@ -55,8 +56,11 @@ const Stopwatch = (props: any) => {
         setDisplayTime(`${displayH}:${displayMin}:${displaySec}`);
     }
 
+    const label = running ? "STOP" : "START";
+
     return (
         <div className="stopwatch" onClick={toggleTimer}>
+            <p>{label}</p>
             {displayTime}
         </div>
     )
