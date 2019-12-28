@@ -10,5 +10,7 @@ export {
 } from './admin';
 export {
     addTask,
-    updateTask
+    updateTask,
+    deleteTask,
+    updateGrid
 } from './timetracker';

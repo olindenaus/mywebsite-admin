@@ -15,3 +15,16 @@ export const updateTask = (id: number, time: number) => {
         time
     }
 }
+
+export const deleteTask = (id: number) => {
+    return {
+        type: actionTypes.DELETE_TASK,
+        id: id
+    }
+}
+
+export const updateGrid = () => {
+    return {
+        type: actionTypes.UPDATE_GRID
+    }
+}

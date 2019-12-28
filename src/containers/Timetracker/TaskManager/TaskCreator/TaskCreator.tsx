@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../../store/actions';
 import { ITask } from '../../Tasks/ITask';
-// import Input from '../../../../components/UI/Input/Input';
 import './TaskCreator.scss';
 
 const TaskCreator = (props: any) => {
@@ -10,8 +9,9 @@ const TaskCreator = (props: any) => {
     const [timeSpent, setTimeSpent] = useState(0);
 
     const addTask = () => {
+        const UUID = props.UID;
         const newTask = {
-            id: props.tasks.length,
+            id: UUID,
             name: taskName,
             timeSpent: timeSpent*60,
             displayTime: '00:00:00'
@@ -36,7 +36,8 @@ const TaskCreator = (props: any) => {
 
 const mapStateToProps = (state: any) => {
     return {
-        tasks: state.timetracker.tasks
+        tasks: state.timetracker.tasks,
+        UID: state.timetracker.UUID,
     }
 }
 

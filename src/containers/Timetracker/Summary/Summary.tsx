@@ -21,11 +21,13 @@ const summary = (props: any) => {
         return task.timeSpent === time;
     });
 
+    const mostConsumingId = mostConsuming.length === 0 ? "" : mostConsuming[0].id;
+
     return (
         <div className="summary">
             <div>No. of tasks: {noOfTasks}</div>
             <div>Hours in total: {Math.floor(totalSpent / 3600)} h</div>
-            <div>Most consuming task: #{mostConsuming[0].id+1}</div>
+            <div>Most consuming task: #{mostConsumingId}</div>
         </div>
     )
 };

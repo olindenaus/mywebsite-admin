@@ -11,12 +11,18 @@ const chartColumn = (props: any) => {
         props.onUpdateTask(props.task.id, time);
     }
 
+    const deleteTask = () => {
+        props.onDeleteTask(props.task.id);
+    }
+
     return (
-        <div className="column-border">
-        <p>{props.task.name}, {props.task.timeSpent}</p>
-            <div className="chart-column" style={{ minHeight: props.height }}>
-                <p>{props.task.displayTime}</p>
-                <StopWatch clicked={toggleStopWatch} />
+        <div className="column-border" style={{ minHeight: props.height }}>
+            <div className="chart-column" >
+                <p onClick={deleteTask}>
+                    <span>{props.task.name}</span>
+                    <span>{props.task.id}</span>
+                </p>
+                <StopWatch clicked={toggleStopWatch} id={props.task.id} />
             </div>
         </div>
     )
@@ -30,7 +36,8 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        onUpdateTask: (id: number, time: number) => dispatch(actions.updateTask(id, time))
+        onUpdateTask: (id: number, time: number) => dispatch(actions.updateTask(id, time)),
+        onDeleteTask: (id: number) => dispatch(actions.deleteTask(id))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(chartColumn);
