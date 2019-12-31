@@ -18,11 +18,13 @@ const chartColumn = (props: any) => {
     return (
         <div className="column-border" style={{ minHeight: props.height }}>
             <div className="chart-column" >
-                <p onClick={deleteTask}>
+                <div className="task-info">
+                    <span className={"btnClose tooltip"} onClick={deleteTask}>&times;
+                    <span className="tooltiptext">Delete task</span></span>
                     <span>{props.task.name}</span>
                     <span>{props.task.id}</span>
-                </p>
-                <StopWatch clicked={toggleStopWatch} id={props.task.id} />
+                </div>
+                <StopWatch clicked={toggleStopWatch} id={props.task.id} color={props.task.color} />
             </div>
         </div>
     )

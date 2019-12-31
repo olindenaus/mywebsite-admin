@@ -8,6 +8,7 @@ const initialState = {
         id: 0,
         name: 'Custom' + 1,
         timeSpent: 0,
+        color: '#ccc'
     }],
     tick: false
 };

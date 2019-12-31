@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
+import { ITask } from './Tasks/ITask';
+
 import Modal from '../../components/UI/Modal/Modal';
 import TaskCreator from './TaskManager/TaskCreator/TaskCreator';
 import Summary from './Summary/Summary';
@@ -12,9 +14,17 @@ import './Timetracker.scss';
 const Timekeeper = (props: any) => {
 
     const [showModal, setShowModal] = useState(false);
-    const [max, setMax] = useState(8);    
-    const [half, setHalf] = useState(max/2);
     const min = 0;
+    
+    const maxTime = Math.max.apply(Math, props.tasks.map((task: ITask) => {
+        return task.timeSpent/3600;
+    })); 
+
+    const getMaxOnScale = () => {
+        const x = Math.ceil(maxTime);
+        return x % 2 === 0 ? x + 2 : x + 1;
+    }
+    const max = maxTime > 8 ? getMaxOnScale() : 8;
 
     const modal = showModal ?
         <Modal
@@ -27,7 +37,7 @@ const Timekeeper = (props: any) => {
         <div className="timetracker">
             <h1>Timetracker</h1>
             {modal}
-            <Scale max={max} half={half} min={min}>
+            <Scale max={max} min={min}>
                 <Tasks max={max} />
                 <Summary />
                 <TaskManager clicked={() => setShowModal(true)}/>

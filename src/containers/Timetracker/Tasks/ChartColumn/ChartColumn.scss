@@ -7,20 +7,73 @@
     justify-content: flex-end;
     background-color: green;
 
-    p {
+    span {
+        display: block;
         margin: 0;
     }
 
-    span {
-        display: block;
+    p {
+        margin: 0;
     }
 }
+
+.task-info {
+    margin: 0;
+    position: relative;
+
+    .btnClose {
+        font-size: 1.5rem;
+        position: absolute;
+        right: 0.1rem;
+        cursor: pointer;
+    }    
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+
+    .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        font-size: 1rem;
+        z-index: 1;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 1s;
+
+        &::after {
+          content: " ";
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          margin-left: -10px;
+          border-width: 10px;
+          border-style: solid;
+          border-color: black transparent transparent transparent;
+        }
+      }
+
+      &:hover {
+        .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+        }
+      }
+  }
 
 .chart-column {
     margin: 0 auto;
     height: 95%;
     width: 94%;
-    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

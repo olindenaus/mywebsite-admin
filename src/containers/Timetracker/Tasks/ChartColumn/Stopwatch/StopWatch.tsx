@@ -40,7 +40,7 @@ const Stopwatch = (props: any) => {
     }
 
     const tick = () => {
-        setTime(time => time + 1);
+        setTime(time => time + 10);
     }
 
     const update = () => {
@@ -68,7 +68,7 @@ const Stopwatch = (props: any) => {
     const label = running ? "STOP" : "START";
 
     return (
-        <div className="stopwatch" onClick={toggleTimer}>
+        <div className="stopwatch" onClick={toggleTimer} style={{backgroundColor: props.color}}>
             <p>{label}</p>
             {displayTime}
         </div>
