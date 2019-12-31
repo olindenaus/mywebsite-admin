@@ -1,0 +1,17 @@
+.button {
+	width: 20px;
+	height: 20px;
+	border-style: solid;
+	box-sizing: border-box;
+    cursor: pointer;
+}
+
+.play {	
+	border-width: 10px 0 10px 20px;
+	border-color: transparent transparent transparent #000;
+}
+
+.pause {
+	border-color: #000;
+	border-width: 0px 7px 0px 7px;
+}

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../../../store/actions';
 
+import PlayButton from './PlayButton/PlayButton';
+
 import './StopWatch.scss';
 
 const Stopwatch = (props: any) => {
@@ -65,12 +67,10 @@ const Stopwatch = (props: any) => {
         setDisplayTime(`${displayH}:${displayMin}`);
     }
 
-    const label = running ? "STOP" : "START";
-
     return (
-        <div className="stopwatch" onClick={toggleTimer} style={{backgroundColor: props.color}}>
-            <p>{label}</p>
-            {displayTime}
+        <div className="stopwatch" style={{backgroundColor: props.color}}>
+            <span>{displayTime}</span>
+            <PlayButton running={running} clicked={toggleTimer}/>
         </div>
     )
 };
