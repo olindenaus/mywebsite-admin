@@ -24,7 +24,7 @@ const chartColumn = (props: any) => {
                     <span>{props.task.name}</span>
                     <span>{props.task.id}</span>
                 </div>
-                <StopWatch clicked={toggleStopWatch} id={props.task.id} color={props.task.color} />
+                <StopWatch clicked={toggleStopWatch} id={props.task.id} color={props.task.color} startTime={props.task.timeSpent}/>
             </div>
         </div>
     )

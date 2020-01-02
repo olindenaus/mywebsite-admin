@@ -8,11 +8,11 @@ import './StopWatch.scss';
 
 const Stopwatch = (props: any) => {
 
-    const [time, setTime] = useState(0);
+    const [time, setTime] = useState<number>(props.startTime);
     const [running, setRunning] = useState(false);
     const [intervalRef, setIntervalRef] = useState();
     const [updateIntervalRef, setUpdateIntervalRef] = useState();
-    const [displayTime, setDisplayTime] = useState('00:00:00');
+    const [displayTime, setDisplayTime] = useState('');
 
     useEffect(() => {
         updateDisplayTime(time);
@@ -53,9 +53,8 @@ const Stopwatch = (props: any) => {
     }
 
     const updateDisplayTime = (time: number) => {
-        const seconds = (time % 60);
-        let minutes = ((time - seconds) / 60);
-        const hours = Math.floor((minutes / 60));
+        const hours = Math.floor((time / 60 / 60));
+        let minutes = Math.floor(time / 60) - (hours *60);
         let displayMin = (minutes % 60).toString();
         let displayH = hours.toString();
         if (minutes < 10) {

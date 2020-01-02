@@ -7,7 +7,7 @@ import './TaskCreator.scss';
 const TaskCreator = (props: any) => {
     const [taskName, setTaskName] = useState('');
     const [timeSpent, setTimeSpent] = useState(0);
-    const [color, setColor] = useState('#000');
+    const [color, setColor] = useState('#cccccc');
 
     const addTask = () => {
         const UUID = props.UID;
@@ -30,7 +30,7 @@ const TaskCreator = (props: any) => {
                 <label>Already spent time (minutes):</label>
                 <input type="number" onChange={(e: any) => setTimeSpent(e.target.value)}></input>
                 <label>Color:</label>
-                <input type="color" onChange={(e: any) => setColor(e.target.value)}></input>
+                <input type="color" value="#cccccc" onChange={(e: any) => setColor(e.target.value)}></input>
                 <button onClick={addTask}>Create</button>
             </div>
         </div>
