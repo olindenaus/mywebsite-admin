@@ -1,7 +1,4 @@
 .task-manager {
-    border: 1px solid blue;
-    width: 200px;
-    padding: 1em;
     position: absolute;
     top: 1em;
     left: 1em;
@@ -11,5 +8,12 @@
         font-size: 1em;
         font-weight: bold;
         color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {            
+            box-shadow: 0 0 5px 5px #aaa;
+        }
     }
 }

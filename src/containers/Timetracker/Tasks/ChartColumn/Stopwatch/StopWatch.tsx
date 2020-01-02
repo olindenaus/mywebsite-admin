@@ -35,14 +35,14 @@ const Stopwatch = (props: any) => {
     }
 
     const start = () => {
-        let x = setInterval(tick, 1);
-        let y = setInterval(update, 60);
+        let x = setInterval(tick, 1000);
+        let y = setInterval(update, 60*1000);
         setIntervalRef(x);
         setUpdateIntervalRef(y);
     }
 
     const tick = () => {
-        setTime(time => time + 10);
+        setTime(time => time + 1);
     }
 
     const update = () => {
@@ -67,7 +67,7 @@ const Stopwatch = (props: any) => {
     }
 
     return (
-        <div className="stopwatch" style={{backgroundColor: props.color}}>
+        <div className="stopwatch">
             <span>{displayTime}</span>
             <PlayButton running={running} clicked={toggleTimer}/>
         </div>

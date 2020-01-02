@@ -30,6 +30,7 @@ const Timekeeper = (props: any) => {
         <Modal
             handleClose={() => setShowModal(false)}
             show={showModal}
+            size={"large"}
         ><TaskCreator handleClose={() => setShowModal(false)}/>
         </Modal> : null;
 

@@ -16,15 +16,15 @@ const chartColumn = (props: any) => {
     }
 
     return (
-        <div className="column-border" style={{ minHeight: props.height }}>
+        <div className="column-border" style={{ minHeight: props.height, backgroundColor: props.task.color }}>
             <div className="chart-column" >
                 <div className="task-info">
                     <span className={"btnClose tooltip"} onClick={deleteTask}>&times;
                     <span className="tooltiptext">Delete task</span></span>
-                    <span>{props.task.name}</span>
-                    <span>{props.task.id}</span>
+                    <h3>{props.task.name}</h3>
+                    <span>Id: {props.task.id}</span>
                 </div>
-                <StopWatch clicked={toggleStopWatch} id={props.task.id} color={props.task.color} startTime={props.task.timeSpent}/>
+                <StopWatch clicked={toggleStopWatch} id={props.task.id} startTime={props.task.timeSpent}/>
             </div>
         </div>
     )

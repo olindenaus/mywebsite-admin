@@ -23,11 +23,20 @@ const summary = (props: any) => {
 
     const mostConsumingId = mostConsuming.length === 0 ? "" : mostConsuming[0].id;
 
+    const getSummaryPoint = (key: string, value: string) => {
+        return (
+            <div className="point">
+                <span>{key}:&nbsp;</span>
+                <span>{value}</span>
+            </div>
+        );
+    }
+
     return (
         <div className="summary">
-            <div>No. of tasks: {noOfTasks}</div>
-            <div>Hours in total: {Math.floor(totalSpent / 3600)} h</div>
-            <div>Most consuming task: #{mostConsumingId}</div>
+            {getSummaryPoint("No. of tasks", noOfTasks)}
+            {getSummaryPoint("Hours in total", (Math.floor((totalSpent / 3600)*2)/2).toString() + "h")}
+            {getSummaryPoint("Most consuming task", mostConsumingId)}
         </div>
     )
 };

@@ -14,7 +14,7 @@ const TaskCreator = (props: any) => {
         const newTask = {
             id: UUID,
             name: taskName,
-            timeSpent: timeSpent*60,
+            timeSpent: timeSpent * 60,
             color: color
         };
         props.onAddTask(newTask);
@@ -30,7 +30,7 @@ const TaskCreator = (props: any) => {
                 <label>Already spent time (minutes):</label>
                 <input type="number" onChange={(e: any) => setTimeSpent(e.target.value)}></input>
                 <label>Color:</label>
-                <input type="color" value="#cccccc" onChange={(e: any) => setColor(e.target.value)}></input>
+                <input type="color" value={color} onChange={(e: any) => setColor(e.target.value)}></input>
                 <button onClick={addTask}>Create</button>
             </div>
         </div>

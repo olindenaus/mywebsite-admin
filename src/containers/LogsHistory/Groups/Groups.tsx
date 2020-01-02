@@ -39,7 +39,7 @@ const Grouping = (props: any) => {
     return (
         <div className="groups">
             {groups}
-            <Modal show={show} handleClose={closeModal}>
+            <Modal show={show} handleClose={closeModal} size={"small"}>
                 <GroupDetails
                     country={groupInfo.country}
                     logs={groupInfo.locations}

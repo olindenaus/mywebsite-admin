@@ -41,12 +41,14 @@
   }
 }
 
+.small {
+  width: 340px;
+}
 
-  //   @media (max-width: 700px) {
-  //     min-width: 70%;
-  //   }
+.medium {
+  width: 450px;
+}
 
-  //   @media (max-width: 520px) {
-  //     min-width: 90%;
-  //   }
-  // }
+.large {
+  width: 640px;
+}

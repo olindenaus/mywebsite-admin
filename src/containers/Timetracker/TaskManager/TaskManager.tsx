@@ -6,7 +6,6 @@ const TaskManager = (props: any) => {
 
     return (
         <div className="task-manager">
-            Task Manager
             <button onClick={props.clicked}>+ Add task</button>
         </div>
     )
