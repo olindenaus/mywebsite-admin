@@ -16,4 +16,9 @@
             box-shadow: 0 0 5px 5px #aaa;
         }
     }
+
+    @media (max-width: 540px) {
+        left: unset;
+        right: 1em;
+    }
 }

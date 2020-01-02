@@ -23,7 +23,7 @@ const TaskCreator = (props: any) => {
 
     return (
         <div className="task-creator">
-            <p>Quelqe chose</p>
+            <h3>Create task</h3>
             <div className="form">
                 <label>Task name:</label>
                 <input type="text" onChange={(e: any) => setTaskName(e.target.value)}></input>

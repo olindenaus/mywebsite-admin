@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Media from 'react-media';
 import { connect } from 'react-redux';
 
 import { ITask } from './Tasks/ITask';
@@ -26,11 +27,16 @@ const Timekeeper = (props: any) => {
     }
     const max = maxTime > 8 ? getMaxOnScale() : 8;
 
+    const modalSize = (
+        <Media query="(max-width: 540px)">
+            {matches => matches ? "small" : "large"}
+        </Media>
+    )
     const modal = showModal ?
         <Modal
             handleClose={() => setShowModal(false)}
             show={showModal}
-            size={"large"}
+            size={modalSize}
         ><TaskCreator handleClose={() => setShowModal(false)}/>
         </Modal> : null;
 

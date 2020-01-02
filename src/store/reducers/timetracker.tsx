@@ -6,7 +6,7 @@ const initialState = {
     UUID: 1,
     tasks: [{
         id: 0,
-        name: 'Custom' + 1,
+        name: 'Task',
         timeSpent: 0,
         color: '#ccc'
     }],

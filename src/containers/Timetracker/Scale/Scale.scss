@@ -1,4 +1,6 @@
 $left-text-margin: -2em;
+$mobile-left-text-margin: 0.5em;
+$mobile-vertical-offset: 1.5em;
 
 .scale {
     border-left: 1px solid black;
@@ -23,6 +25,10 @@ $left-text-margin: -2em;
         position: absolute;
         top: -0.8em;
         left: $left-text-margin;
+        @media (max-width: 540px) {
+            left: $mobile-left-text-margin;
+            top: -1.5em;
+        }
     }
 }
 
@@ -31,22 +37,13 @@ $left-text-margin: -2em;
         position: absolute;
         bottom: -0.5em;
         left: $left-text-margin;
-        
+        @media (max-width: 540px) {
+            left: $mobile-left-text-margin;
+            bottom: -1.5em;
+        }        
     }
 }
 
 .fourth {
-    // border-bottom: 1px solid black;
     border-top: 1px solid black;
-}
-
-.third {
-    // border-bottom: 1px solid black;
-}
-
-.second {
-    // border-bottom: 1px solid black;
-}
-
-.first {
 }

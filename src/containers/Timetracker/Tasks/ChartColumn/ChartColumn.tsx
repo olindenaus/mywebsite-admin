@@ -21,8 +21,8 @@ const chartColumn = (props: any) => {
                 <div className="task-info">
                     <span className={"btnClose tooltip"} onClick={deleteTask}>&times;
                     <span className="tooltiptext">Delete task</span></span>
-                    <h3>{props.task.name}</h3>
-                    <span>Id: {props.task.id}</span>
+                    <h4>{props.task.name}, {props.task.id}</h4>
+                    {/* <span>Id: {props.task.id}</span> */}
                 </div>
                 <StopWatch clicked={toggleStopWatch} id={props.task.id} startTime={props.task.timeSpent}/>
             </div>
