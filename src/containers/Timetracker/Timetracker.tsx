@@ -16,10 +16,10 @@ const Timekeeper = (props: any) => {
 
     const [showModal, setShowModal] = useState(false);
     const min = 0;
-    
+
     const maxTime = Math.max.apply(Math, props.tasks.map((task: ITask) => {
-        return task.timeSpent/3600;
-    })); 
+        return task.timeSpent / 3600;
+    }));
 
     const getMaxOnScale = () => {
         const x = Math.ceil(maxTime);
@@ -27,17 +27,11 @@ const Timekeeper = (props: any) => {
     }
     const max = maxTime > 8 ? getMaxOnScale() : 8;
 
-    const modalSize = (
-        <Media query="(max-width: 540px)">
-            {matches => matches ? "small" : "large"}
-        </Media>
-    )
     const modal = showModal ?
         <Modal
             handleClose={() => setShowModal(false)}
             show={showModal}
-            size={modalSize}
-        ><TaskCreator handleClose={() => setShowModal(false)}/>
+        ><TaskCreator handleClose={() => setShowModal(false)} />
         </Modal> : null;
 
     return (
@@ -47,7 +41,7 @@ const Timekeeper = (props: any) => {
             <Scale max={max} min={min}>
                 <Tasks max={max} />
                 <Summary />
-                <TaskManager clicked={() => setShowModal(true)}/>
+                <TaskManager clicked={() => setShowModal(true)} />
             </Scale>
         </div>
     )

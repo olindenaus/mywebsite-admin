@@ -42,6 +42,19 @@ const AdminPanel = (props: any) => {
             },
             valid: false,
             touched: false
+        },
+        country: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'text',
+                placeholder: 'Country'
+            },
+            value: '',
+            validation: {
+                required: true
+            },
+            valid: false,
+            touched: false
         }
     });
     const [locationLog, setLocationLog] = useState({
@@ -51,11 +64,11 @@ const AdminPanel = (props: any) => {
         country: ''
     });
 
-    const inputChangedHandler = (event: any, id: string) => {
+    const inputChangedHandler = (value: any, id: string) => {
         const updatedControls = updateObject(controls, {
             [id]: updateObject(controls[id], {
-                value: event.target.value,
-                valid: checkValidity(event.target.value, controls[id].validation),
+                value: value,
+                valid: checkValidity(value, controls[id].validation),
                 touched: true
             })
         });
@@ -99,8 +112,11 @@ const AdminPanel = (props: any) => {
     }
 
     const saveLocation = () => {
-        props.onSaveLocationLog(locationLog, props.token, props.userId);
-        setShowPopup(true);
+        inputChangedHandler(controls.country.value, 'country');
+        if (controls.country.valid) {
+            props.onSaveLocationLog(locationLog, props.token, props.userId);
+            setShowPopup(true);
+        }
     }
 
     const setLogManually = () => {
@@ -117,8 +133,7 @@ const AdminPanel = (props: any) => {
         setMessage(`Logged: ${dateVal}, Lat: ${lat}, Long: ${lon}`);
     }
 
-    const countryChanged = (event: any) => {
-        const ctry = event.target.value;
+    const countryChanged = (ctry: string) => {
         const updatedLocation = updateObject(locationLog, {
             country: ctry
         });
@@ -133,7 +148,7 @@ const AdminPanel = (props: any) => {
         })
     }
 
-    let inputs = formElementsArray.map(formElement => (
+    const inputs = formElementsArray.map(formElement => (
         <Input
             label={formElement.config.elementConfig.placeholder}
             key={formElement.id}
@@ -143,13 +158,16 @@ const AdminPanel = (props: any) => {
             invalid={!formElement.config.valid}
             shouldValidate={formElement.config.validation}
             touched={formElement.config.touched}
-            changed={(event: any) => inputChangedHandler(event, formElement.id)}
+            changed={(event: any) => { countryChanged(event.target.value); inputChangedHandler(event.target.value, formElement.id) }}
         />
     ));
 
+    const countryInput = inputs[2];
+    const geoLocationInputs = inputs.slice(0, 2);
+
     const manualPart = manual ? (
         <div>
-            {inputs}
+            {geoLocationInputs}
             <button onClick={setLogManually}>Check output</button>
         </div>
     ) : null;
@@ -170,10 +188,9 @@ const AdminPanel = (props: any) => {
                 <button onClick={() => setManual(!manual)}>Log manually</button>
                 {manualPart}
                 <p>{message}</p>
-                <p>Country</p>
-                <input type="text" value={locationLog.country} onChange={countryChanged}></input>
+                {countryInput}
                 <button onClick={trimLocation}>Trim location</button>
-                <button className="save-button" onClick={saveLocation}>Save</button>
+                <button className="save button" onClick={saveLocation}>Save</button>
                 {modal}
             </div>
         </div>
