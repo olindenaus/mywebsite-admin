@@ -2,14 +2,15 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
 import { ITask } from '../../containers/Timetracker/Tasks/ITask';
 
-const initialState = {
+interface IState { 
+    UUID: number,
+    tasks: ITask[],
+    tick: boolean
+ }
+
+const initialState: IState = {
     UUID: 1,
-    tasks: [{
-        id: 0,
-        name: 'Task',
-        timeSpent: 0,
-        color: '#ccc'
-    }],
+    tasks: [],
     tick: false
 };
 

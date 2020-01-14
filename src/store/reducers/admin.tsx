@@ -3,6 +3,7 @@ import { updateObject } from '../../shared/utility';
 
 const initialState = {
     responseMessage: '',
+    admin: false
 };
 
 const saveLocationSuccess = (state: any, action: any) => {
