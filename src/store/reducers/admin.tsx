@@ -9,13 +9,13 @@ const initialState = {
 const saveLocationSuccess = (state: any, action: any) => {
     return updateObject(state, {
         responseMessage: 'Successfully saved location'
-    }); 
+    });
 }
 
 const saveLocationFail = (state: any, action: any) => {
     return updateObject(state, {
         responseMessage: action.error.message
-    });    
+    });
 }
 
 const reducer = (state = initialState, action: any) => {

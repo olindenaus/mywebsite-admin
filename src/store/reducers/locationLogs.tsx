@@ -21,19 +21,19 @@ const fetchLocationsSuccess = (state: any, action: any) => {
 }
 
 const fetchLocationsFail = (state: any, action: any) => {
-    return updateObject(state, { 
+    return updateObject(state, {
         loading: false,
         errorMessage: action.error
-     });
+    });
 }
 
 const fetchCountryStart = (state: any) => {
-    return updateObject(state, {loading: true});
+    return updateObject(state, { loading: true });
 }
 
 const fetchCountrySuccess = (state: any, action: any) => {
     const country = action.data[Object.keys(action.data)[0]].country;
-    if(typeof country === 'undefined') {        
+    if (typeof country === 'undefined') {
         return updateObject(state, {
             country: '[no information] -> see logs below',
             loading: false,

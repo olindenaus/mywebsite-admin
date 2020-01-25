@@ -1,7 +1,7 @@
 import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
 
-type tState = {token?: string|any, userId?: string|any, error: any};
+type tState = { token?: string | any, userId?: string | any, error: any };
 
 const initialState = {
     token: null,
@@ -11,7 +11,6 @@ const initialState = {
 };
 
 const authSuccess = (state: tState, action: any) => {
-    console.log("Auth success: ", action);    
     return updateObject(state, {
         token: action.idToken,
         userId: action.userId,
@@ -21,9 +20,9 @@ const authSuccess = (state: tState, action: any) => {
 };
 
 const authStart = (state: tState) => {
-    return updateObject(state, { 
+    return updateObject(state, {
         error: null,
-        loading: true 
+        loading: true
     });
 }
 

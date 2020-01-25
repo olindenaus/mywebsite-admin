@@ -5,7 +5,7 @@ describe('locationLog reducer', () => {
     it('should display no country information', () => {
         expect(reducer(undefined, {
             type: actionTypes.FETCH_COUNTRY_SUCCESS,
-            data: {'data': {country: undefined}}
+            data: { 'data': { country: undefined } }
         })).toEqual({
             locations: [],
             loading: false,
@@ -17,7 +17,7 @@ describe('locationLog reducer', () => {
     it('should display last visited country', () => {
         expect(reducer(undefined, {
             type: actionTypes.FETCH_COUNTRY_SUCCESS,
-            data: {'data': {country: 'Poland'}}
+            data: { 'data': { country: 'Poland' } }
         })).toEqual({
             locations: [],
             loading: false,

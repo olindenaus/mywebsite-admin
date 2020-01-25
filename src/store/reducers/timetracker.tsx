@@ -2,11 +2,11 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
 import { ITask } from '../../containers/Timetracker/Tasks/ITask';
 
-interface IState { 
+interface IState {
     UUID: number,
     tasks: ITask[],
     tick: boolean
- }
+}
 
 const initialState: IState = {
     UUID: 1,
@@ -21,9 +21,9 @@ const addTask = (state: any, action: any) => {
     });
 }
 
-const updateTask = (state: any, action: any) => {    
+const updateTask = (state: any, action: any) => {
     return updateObject(state, {
-        tasks: state.tasks.map((task: ITask) => {  
+        tasks: state.tasks.map((task: ITask) => {
             return (task.id !== action.id) ?
                 task : {
                     ...task,
