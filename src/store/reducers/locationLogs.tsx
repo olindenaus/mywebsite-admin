@@ -66,7 +66,7 @@ const reducer = (state = initialState, action: any) => {
             return fetchCountryStart(state);
         case actionTypes.FETCH_COUNTRY_SUCCESS:
             return fetchCountrySuccess(state, action);
-        case actionTypes.FETCH_LOCATIONS_FAIL:
+        case actionTypes.FETCH_COUNTRY_FAIL:
             return fetchCountryFail(state, action);
         default:
             return state;

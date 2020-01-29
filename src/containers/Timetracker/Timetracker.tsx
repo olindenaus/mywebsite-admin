@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Media from 'react-media';
 import { connect } from 'react-redux';
 
 import { ITask } from './Tasks/ITask';
