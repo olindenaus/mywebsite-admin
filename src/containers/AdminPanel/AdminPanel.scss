@@ -21,6 +21,12 @@
         }
     }
 
+    .panel-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: stretch;
+    }
+
 .save {
     margin: 4rem auto 1rem auto;
     font-size: 2em;

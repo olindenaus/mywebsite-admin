@@ -21,3 +21,14 @@ export const checkValidity = (value: string, rules: any) => {
     }
     return isValid;
 }
+
+export const mapControlsToFormElements = (controls: any) => {    
+    const formElementsArray = [];
+    for(let key in controls) {
+        formElementsArray.push({
+            id: key,
+            config: controls[key]
+        })
+    }
+    return formElementsArray;
+}

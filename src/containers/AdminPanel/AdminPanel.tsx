@@ -1,6 +1,7 @@
 import React from 'react';
 
-import LocationLogging from './Location/LocationLogging';
+import LocationPane from './LocationPane/LocationLogging';
+import SongPane from './SongPane/SongPane';
 import './AdminPanel.scss';
 
 const AdminPanel = (props: any) => {
@@ -8,7 +9,10 @@ const AdminPanel = (props: any) => {
     return (
         <div className="admin-panel">
             <h1>Admin Panel</h1>
-            <LocationLogging />
+            <div className="panel-container">
+                <LocationPane />
+                <SongPane />
+            </div>
         </div>
     )
 };

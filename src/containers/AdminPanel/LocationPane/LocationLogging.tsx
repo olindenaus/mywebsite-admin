@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import Modal from '../../../components/UI/Modal/Modal';
-import { updateObject, checkValidity } from '../../../shared/utility';
+import { updateObject, checkValidity, mapControlsToFormElements } from '../../../shared/utility';
 import Input from '../../../components/UI/Input/Input';
 import * as actions from '../../../store/actions';
 
@@ -64,7 +64,6 @@ const LocationLogging = (props: any) => {
             touched: false
         }
     });
-
 
     const getLocation = () => {
         if (navigator.geolocation) {
@@ -132,25 +131,10 @@ const LocationLogging = (props: any) => {
                 touched: true
             })
         });
-        setControls(updatedControls);
-    }   
-
-    
-
-    const countryChanged = (ctry: string) => {
-        const updatedLocation = updateObject(locationLog, {
-            country: ctry
-        });
-        setLocationLog(updatedLocation);
+        setControls((prev:any) => {console.log(prev); return updatedControls; });
     }
     
-    const formElementsArray = [];
-    for (let key in controls) {
-        formElementsArray.push({
-            id: key,
-            config: controls[key]
-        })
-    }
+    const formElementsArray = mapControlsToFormElements(controls);
 
     const inputs = formElementsArray.map(formElement => (
         <Input
@@ -162,15 +146,14 @@ const LocationLogging = (props: any) => {
             invalid={!formElement.config.valid}
             shouldValidate={formElement.config.validation}
             touched={formElement.config.touched}
-            changed={(event: any) => { countryChanged(event.target.value); inputChangedHandler(event.target.value, formElement.id) }}
+            changed={(event: any) => {inputChangedHandler(event.target.value, formElement.id) }}
         />
     ));
     
     const countryInput = inputs[2];
     const geoLocationInputs = inputs.slice(0, 2);
-
     
-    const condition = (props.responseMessage !== '' && showPopup)
+    const condition = (props.responseMessage !== '' && showPopup);
 
     let modal = condition ?
         <Modal
@@ -188,7 +171,7 @@ const LocationLogging = (props: any) => {
 
     return (
         <div className="location-logging">
-                <h1>Position logging</h1>
+                <h1>Position Pane</h1>
                 <button onClick={getLocation}>Get Location</button>
                 <button onClick={() => setManual(!manual)}>Log manually</button>
                 {manualPart}

@@ -1,7 +1,14 @@
 import axios from 'axios';
 
-const instance = axios.create({
+export const firebase = axios.create({
     baseURL: 'https://website-d1578.firebaseio.com',
 });
 
-export default instance;
+export const spotify_api = axios.create({
+    baseURL: 'https://api.spotify.com/v1',
+    timeout: 1000
+});
+
+export const spotify_accounts = axios.create({
+    baseURL: 'https://accounts.spotify.com'
+})

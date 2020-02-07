@@ -1,4 +1,4 @@
-import axios from '../../axios';
+import { firebase } from '../../axios';
 import * as actionTypes from './actionTypes';
 
 export const saveLocationSuccess = (result: any) => {
@@ -18,7 +18,7 @@ export const saveLocationFail = (error: any) => {
 export const saveLocationLog = (locationLog: any, token: string, userId: string) => {
     return (dispatch: any) => {
         const queryParams = "locationLogs.json?auth="+token;
-        axios.post(queryParams, locationLog)
+        firebase.post(queryParams, locationLog)
             .then(res => {
                 dispatch(saveLocationSuccess(res));
             }).catch(err => {
