@@ -32,3 +32,12 @@ export const mapControlsToFormElements = (controls: any) => {
     }
     return formElementsArray;
 }
+
+export const getSongDurationDisplayTime = (song: any) => {
+    const seconds = ~~(song.duration/1000);
+    const minutes = ~~(seconds/60);
+    const restOfSeconds = seconds % 60;
+    const minDisplay = minutes > 9 ? minutes.toString() : '0' + minutes;
+    const secDisplay = restOfSeconds > 9 ? restOfSeconds.toString() : '0' + restOfSeconds;
+    return minDisplay + ":" + secDisplay;
+}

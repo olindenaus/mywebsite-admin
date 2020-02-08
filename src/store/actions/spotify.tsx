@@ -1,6 +1,5 @@
 import { spotify_api, spotify_accounts, firebase } from '../../axios';
 import * as actionTypes from './actionTypes';
-import { saveLocationFail } from './admin';
 import { ISong } from '../reducers/spotify';
 
 export const saveSongStart = () => {
@@ -26,12 +25,12 @@ export const saveSongFail = (error: any) => {
 export const saveSong = (song: ISong, date: Date, token: string) => {
     return (dispatch: any) => {
         dispatch(saveSongStart());
-        const queryParams = "songs.json?auth="+token;
-        firebase.post(queryParams, {song: song, date: date})
+        const queryParams = "songs.json?auth=" + token;
+        firebase.post(queryParams, { song: song, date: date })
             .then(res => {
                 dispatch(saveSongSuccess(res.data));
             })
-            .catch(err => {        
+            .catch(err => {
                 dispatch(saveSongFail(err.response.data.error));
             })
     }
@@ -99,5 +98,38 @@ export const spotifyAuth = (data: any) => {
     return (dispatch: any) => {
         dispatch(spotifyAuthSuccess(data.token));
         dispatch(spotifyAuthTimeout(data.expiresIn));
+    }
+}
+
+export const fetchSongsStart = () => {
+    return {
+        type: actionTypes.FETCH_SONG_START
+    }
+}
+
+export const fetchSongsSuccess = (data: any) => {
+    return {
+        type: actionTypes.FETCH_SONG_SUCCESS,
+        data: data
+    }
+}
+
+export const fetchSongsFail = (error: any) => {
+    return {
+        type: actionTypes.FETCH_SONG_FAIL,
+        error: error 
+    }
+}
+
+export const fetchSongs = () => {
+    return (dispatch: any) => {
+        dispatch(fetchSongsStart());
+        firebase.get('songs.json')
+            .then(res => {
+                dispatch(fetchSongsSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(fetchSongsFail(err.response.data.error));
+            })
     }
 }

@@ -17,5 +17,6 @@ export {
 export {
     spotifyAuth,
     saveSong,
-    searchSong
+    searchSong,
+    fetchSongs,
 } from './spotify';

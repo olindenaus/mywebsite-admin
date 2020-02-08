@@ -6,13 +6,9 @@ import Song from './Song';
 const songDisplay = (props: any) => {
 
     const songs = props.songs.map((song: ISong) => {
-        return <Song key={song.name} song={song} clicked={props.pickSong}/>
+        return <Song key={song.name+song.artist} song={song} clicked={props.pickSong}/>
     })
 
-    return (
-        <>
-        {songs}
-        </>
-    )
+    return (<>{songs}</>)
 };
 export default songDisplay;

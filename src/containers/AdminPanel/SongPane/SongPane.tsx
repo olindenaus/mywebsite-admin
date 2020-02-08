@@ -82,7 +82,7 @@ const SongPane = (props: any) => {
     ));
 
     const onSearch = () => {
-        props.onSearchSong(songInfo, props.token);        
+        props.onSearchSong(songInfo, props.spotifyToken);        
     };
 
     const onSave = () => {

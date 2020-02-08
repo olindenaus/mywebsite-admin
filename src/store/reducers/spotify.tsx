@@ -12,7 +12,7 @@ export interface ISong {
     name: string,
     duration: number,
     artist: string,
-    img: IImage
+    images: { biggest: IImage, medium: IImage, small: IImage }
 }
 
 const initialState = {
@@ -20,7 +20,8 @@ const initialState = {
     data: {},
     songsResult: [],
     spotifyToken: '',
-    loading: false
+    loading: false,
+    fetchedSongs: []
 };
 
 const saveSongStart = (state: any) => {
@@ -50,7 +51,11 @@ const mapToSongs = (tracks: any[]) => {
             previewUrl: track.preview_url,
             duration: track.duration_ms,
             artist: track.artists[0].name,
-            img: { url: track.album.images[2].url, width: track.album.images[2].width, height: track.album.images[2].height }
+            images: {
+                biggest: { url: track.album.images[0].url, width: track.album.images[0].width, height: track.album.images[0].height },
+                medium: { url: track.album.images[1].url, width: track.album.images[1].width, height: track.album.images[1].height },
+                small: { url: track.album.images[2].url, width: track.album.images[2].width, height: track.album.images[2].height }
+            }
         }
     })
 }
@@ -77,6 +82,21 @@ const spotifyLogout = (state: any) => {
     })
 }
 
+const fetchSongsFail = (state: any, error: any) => {
+    console.log('fetch song fail', error)
+    return updateObject(state, { error: error })
+}
+
+const fetchSongsStart = (state: any) => {
+    console.log('fetch song start')
+    return state;
+}
+
+const fetchSongsSuccess = (state: any, data: any) => {
+    console.log('fetch song success', data);
+    return updateObject(state, { fetchedSongs: data });
+}
+
 const reducer = (state = initialState, action: any) => {
     switch (action.type) {
         case actionTypes.SEARCH_SONG_START:
@@ -95,6 +115,12 @@ const reducer = (state = initialState, action: any) => {
             return authenticate(state, action.token);
         case actionTypes.SPOTIFY_LOGOUT:
             return spotifyLogout(state);
+        case actionTypes.FETCH_SONG_START:
+            return fetchSongsStart(state);
+        case actionTypes.FETCH_SONG_SUCCESS:
+            return fetchSongsSuccess(state, action.data);
+        case actionTypes.FETCH_SONG_FAIL:
+            return fetchSongsFail(state, action.error);
         default:
             return state;
     }
