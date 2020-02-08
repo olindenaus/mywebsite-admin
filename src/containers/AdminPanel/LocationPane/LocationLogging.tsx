@@ -131,7 +131,7 @@ const LocationLogging = (props: any) => {
                 touched: true
             })
         });
-        setControls((prev:any) => {console.log(prev); return updatedControls; });
+        setControls((prev:any) => {return updatedControls; });
     }
     
     const formElementsArray = mapControlsToFormElements(controls);

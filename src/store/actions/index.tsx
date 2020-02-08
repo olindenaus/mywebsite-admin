@@ -14,3 +14,8 @@ export {
     deleteTask,
     updateGrid
 } from './timetracker';
+export {
+    spotifyAuth,
+    saveSong,
+    searchSong
+} from './spotify';

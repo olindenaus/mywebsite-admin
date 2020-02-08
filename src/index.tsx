@@ -12,6 +12,7 @@ import authReducer from './store/reducers/auth';
 import logsReducer from './store/reducers/locationLogs';
 import adminReducer from './store/reducers/admin';
 import timeTrackerReducer from './store/reducers/timetracker';
+import spotifyReducer from './store/reducers/spotify';
 
 declare global {
     interface Window { __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any; }
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
     auth: authReducer,
     logs: logsReducer,
     admin: adminReducer,
-    timetracker: timeTrackerReducer
+    timetracker: timeTrackerReducer,
+    spotify: spotifyReducer
 });
 
 // const store = createStore(rootReducer, composeEnhancers(
