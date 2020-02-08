@@ -171,7 +171,7 @@ const LocationLogging = (props: any) => {
 
     return (
         <div className="location-logging">
-                <h1>Position Pane</h1>
+                <h2>Position Pane</h2>
                 <button onClick={getLocation}>Get Location</button>
                 <button onClick={() => setManual(!manual)}>Log manually</button>
                 {manualPart}

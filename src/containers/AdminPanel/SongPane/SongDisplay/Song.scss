@@ -1,0 +1,55 @@
+.song {
+    min-width: 160px;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    p {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    &:hover {
+        background-color: #ccc;
+    }
+}
+
+.tooltip {
+    position: relative;
+
+    .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        font-size: 0.8rem;
+        z-index: 1;
+        bottom: 85%;
+        left: 50%;
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 1s;
+
+        &::after {
+          content: " ";
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          margin-left: -10px;
+          border-width: 10px;
+          border-style: solid;
+          border-color: black transparent transparent transparent;
+        }
+      }
+
+      &:hover {
+        .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+        }
+      }
+  }

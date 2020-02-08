@@ -1,4 +1,4 @@
-import { spotify_api, spotify_accounts, firebase } from '../../axios';
+import { spotify_api, firebase } from '../../axios';
 import * as actionTypes from './actionTypes';
 import { ISong } from '../reducers/spotify';
 
@@ -31,6 +31,7 @@ export const saveSong = (song: ISong, date: Date, token: string) => {
                 dispatch(saveSongSuccess(res.data));
             })
             .catch(err => {
+                console.log(err);
                 dispatch(saveSongFail(err.response.data.error));
             })
     }
@@ -69,7 +70,7 @@ export const searchSong = (song: string, token: string) => {
             dispatch(searchSongSuccess(res.data));
         }).catch(err => {
             dispatch(searchSongFail(err.response.data.error));
-        })
+        })       
     }
 }
 
@@ -117,14 +118,14 @@ export const fetchSongsSuccess = (data: any) => {
 export const fetchSongsFail = (error: any) => {
     return {
         type: actionTypes.FETCH_SONG_FAIL,
-        error: error 
+        error: error
     }
 }
 
 export const fetchSongs = () => {
     return (dispatch: any) => {
         dispatch(fetchSongsStart());
-        firebase.get('songs.json')
+        firebase.get('songs.json') //?orderBy="$key"
             .then(res => {
                 dispatch(fetchSongsSuccess(res.data));
             })
