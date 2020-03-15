@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import _ from 'underscore';
 
 import SongDisplay from './SongDisplay/SongPicker';
 import * as actions from '../../../store/actions';
@@ -46,7 +47,6 @@ const SongPane = (props: any) => {
         if (url.includes("access_token=")) {
             const queryParams = url.split("access_token=")[1].split("&");
             const token = queryParams[0];
-            const tokenType = queryParams[1].split("token_type=")[1];
             const expireTime = queryParams[2].split("expires_in=")[1];
             if (token !== '' && token !== props.spotifyToken) {
                 props.onAuthenticate(token, expireTime);
@@ -57,6 +57,23 @@ const SongPane = (props: any) => {
     useEffect(() => {
         extractTokenFromCallback();
     });
+
+    useEffect(() => {
+        props.onFetchSongs();
+    }, [])
+
+    const songsOfADay = Object.keys(props.fetchedSongs).map((id: any) => {
+        return props.fetchedSongs[id];
+    });
+
+    const getFutureSongs = (songs: any, date: Date) => {
+        return _.filter(songs, (a: any) => {
+            return a.date >= date.toLocaleDateString("sv-SE").split(" ")[0];
+        }).map((song: any) => {
+            console.log(song);            
+            return <p key={song.date}>{`${song.date}, ${song.song.artist} - ${song.song.name}`}</p>;
+        });
+    }
 
     const formElementsArray = mapControlsToFormElements(controls);
 
@@ -73,7 +90,7 @@ const SongPane = (props: any) => {
 
     const updateSongInfo = (formElement: any, value: any) => {
         console.log(formElement);
-        
+
         if (formElement.id === 'songDate') {
             setSongDate(value);
         } else {
@@ -95,7 +112,6 @@ const SongPane = (props: any) => {
                 changed={(event: any) => { updateSongInfo(formElement, event.target.value); inputChangedHandler(event.target.value, formElement.id) }}
             />)
     });
-
 
     const onSearch = () => {
         props.onSearchSong(songInfo, props.spotifyToken);
@@ -125,12 +141,13 @@ const SongPane = (props: any) => {
     if (props.loading) {
         songs = <Spinner />
     }
-    
+
     return (
         <div className="song-pane">
             <h2>Song Pane</h2>
             {inputs}
             {authentication}
+            {getFutureSongs(songsOfADay, new Date())}
             <button className="button" onClick={onSearch}>Search</button>
             {songs}
             <button className="save button" onClick={onSave}>Save</button>
@@ -143,7 +160,8 @@ const mapStateToProps = (state: any) => {
         spotifyToken: state.spotify.spotifyToken,
         songs: state.spotify.songsResult,
         authToken: state.auth.token,
-        loading: state.spotify.loading
+        loading: state.spotify.loading,
+        fetchedSongs: state.spotify.fetchedSongs
     }
 }
 
@@ -151,7 +169,8 @@ const mapDispatchToProps = (dispatch: any) => {
     return {
         onSearchSong: (song: string, token: string) => dispatch(actions.searchSong(song, token)),
         onSaveSong: (song: ISong, date: Date, token: string) => dispatch(actions.saveSong(song, date, token)),
-        onAuthenticate: (token: string, expiresTime: number) => dispatch(actions.spotifyAuth({ token: token, expiresIn: expiresTime }))
+        onAuthenticate: (token: string, expiresTime: number) => dispatch(actions.spotifyAuth({ token: token, expiresIn: expiresTime })),
+        onFetchSongs: () => dispatch(actions.fetchSongs())
     }
 }
 

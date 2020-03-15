@@ -19,7 +19,7 @@ const SongOfADay = (props: any) => {
     });
     
     const [lookForDate, setLookForDate] = useState(new Date());
-    const [song, setSong] = useState();
+    // const [song, setSong] = useState();
 
     const getSongForADate = (songs: any, date: Date) => {
         if (songs.length > 0) {
@@ -40,8 +40,7 @@ const SongOfADay = (props: any) => {
     return (
         <>
             <h1>Song of A Day</h1>
-            {/* <p>{`Displaying for: ${lookForDate.toLocaleDateString("sv-SE")}`}</p> */}
-            <SongDisplay songOfADay={song ? song : todaySong} date={lookForDate} />
+            <SongDisplay songOfADay={todaySong} date={lookForDate} />
             <button onClick={() => changeDate(-1)}>Previous</button>
             {lookForDate.toLocaleDateString("sv-SE") === today.toLocaleDateString("sv-SE") ? null : <button onClick={() => changeDate(1)}>Next</button>}
         </>
