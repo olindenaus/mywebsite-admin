@@ -7,11 +7,11 @@ import picture from '../../img/record-159211_1280.png';
 
 const SongDisplay = (props: any) => {
 
-    const [audio, setAudio] = useState();
+    const [audio, setAudio] = useState(new Audio());
 
-    const play = (url: string) => {
+    const play = (url: string) => {    
         if (url !== undefined) {
-            if (audio && !audio.paused) {
+            if (!audio.paused) {
                 audio.pause();
             } else {
                 const aud = new Audio(url);
@@ -22,7 +22,6 @@ const SongDisplay = (props: any) => {
     }
 
     const emptySongTemplate = () => {
-        console.log("Props --->>>: ", props)
         return (<div className="songOfADay">
             <p>There is no song for:</p>
             <p>{props.date.toLocaleDateString("sv-SE")}</p>
@@ -36,7 +35,7 @@ const SongDisplay = (props: any) => {
     let displaySong = emptySongTemplate();
     if (props.songOfADay !== undefined) {
         const songDetails = props.songOfADay.song;
-        displaySong = <div className="songOfADay" onClick={() => play(props.songOfADay.previewUrl)}>
+        displaySong = <div className="songOfADay" onClick={() => play(props.songOfADay.song.previewUrl)}>
             <p>{props.songOfADay.date}</p>
             <p>{songDetails.artist}</p>
             <p>{getSongDurationDisplayTime(songDetails)}</p>
