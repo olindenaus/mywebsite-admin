@@ -130,7 +130,8 @@ export const fetchSongs = () => {
                 dispatch(fetchSongsSuccess(res.data));
             })
             .catch(err => {
-                dispatch(fetchSongsFail(err.response.data.error));
+                console.log("----->>>>>Error: ", err.response);
+                dispatch(fetchSongsFail(err.response));
             })
     }
 }

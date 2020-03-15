@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import _ from 'underscore';
 
 import * as actions from '../../store/actions';
-import { getSongDurationDisplayTime } from '../../shared/utility';
 import './SongOfADay.scss';
+import SongDisplay from './SongDisplay';
 
 const SongOfADay = (props: any) => {
 
-    const [audio, setAudio] = useState();
+    const today = new Date();
+
     useEffect(() => {
         props.onFetchSongs();
     }, []);
@@ -16,48 +17,33 @@ const SongOfADay = (props: any) => {
     const songsOfADay = Object.keys(props.songs).map((id: any) => {
         return props.songs[id];
     });
+    
+    const [lookForDate, setLookForDate] = useState(new Date());
+    const [song, setSong] = useState();
 
-    const getTodaysSong = (songs: any) => {
-        return _.filter(songs, function (a: any) {
-            return a.date == (new Date()).toLocaleDateString("sv-SE").split(" ")[0];
-        })[0];
-    }
-
-    const play = (url: string) => {
-        if (url !== undefined) {
-            if (audio && !audio.paused) {
-                audio.pause();
-            } else {
-                const aud = new Audio(url);
-                setAudio(aud);
-                aud.play();
-            }
+    const getSongForADate = (songs: any, date: Date) => {
+        if (songs.length > 0) {
+            return _.filter(songs, function (a: any) {
+                return a.date == date.toLocaleDateString("sv-SE").split(" ")[0];
+            })[0];
         }
     }
 
-    let songDisplay = null;
-    if (songsOfADay.length > 0) {
-        const songOfADay = getTodaysSong(songsOfADay);
-        const songDetails = songOfADay.song;
-        songDisplay = <div className="songOfADay" onClick={() => play(songDetails.previewUrl)}>
-            <p>{songOfADay.date}</p>
-            <p>{songDetails.artist}</p>
-            <p>{getSongDurationDisplayTime(songDetails)}</p>
-            <img
-                src={songDetails.images.medium.url}
-                width={songDetails.images.medium.width}
-                height={songDetails.images.medium.height}
-            />
-            {/* <audio id="myAudio" controls>
-              <source src={songDetails.previewUrl} type="audio/mpeg" />
-            </audio> */}
-            <p>{songDetails.name}</p>
-        </div>;
+    const todaySong = getSongForADate(songsOfADay, lookForDate);
+
+    const changeDate = (day: number) => {
+        let d = new Date(lookForDate.getTime());
+        d.setDate(d.getDate() + day);
+        setLookForDate(d);
     }
+
     return (
         <>
             <h1>Song of A Day</h1>
-            {songDisplay}
+            {/* <p>{`Displaying for: ${lookForDate.toLocaleDateString("sv-SE")}`}</p> */}
+            <SongDisplay songOfADay={song ? song : todaySong} date={lookForDate} />
+            <button onClick={() => changeDate(-1)}>Previous</button>
+            {lookForDate.toLocaleDateString("sv-SE") === today.toLocaleDateString("sv-SE") ? null : <button onClick={() => changeDate(1)}>Next</button>}
         </>
     );
 }
