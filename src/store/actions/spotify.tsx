@@ -29,6 +29,7 @@ export const saveSong = (song: ISong, date: Date, token: string) => {
         firebase.post(queryParams, { song: song, date: date })
             .then(res => {
                 dispatch(saveSongSuccess(res.data));
+                dispatch(forgetSongTimeout());
             })
             .catch(err => {
                 console.log(err);
@@ -124,7 +125,7 @@ export const fetchSongsFail = (error: any) => {
 
 export const foregtSavedSong = () => {
     return {
-        type: actionTypes.AUTH_LOGOUT
+        type: actionTypes.SAVE_SONG_FORGET
     };
 };
 
@@ -142,7 +143,6 @@ export const fetchSongs = () => {
         firebase.get('songs.json') //?orderBy="$key"
             .then(res => {
                 dispatch(fetchSongsSuccess(res.data));
-                dispatch(forgetSongTimeout());
             })
             .catch(err => {
                 console.log("----->>>>>Error: ", err.response);

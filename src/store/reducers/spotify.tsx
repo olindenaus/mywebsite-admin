@@ -67,18 +67,18 @@ const mapToSongs = (tracks: any[]) => {
 }
 
 const searchSongSuccess = (state: any, tracks: any) => {
-    console.log('[REDUCER] searchSongSuccess');
+    console.log('[SPOTIFY REDUCER] searchSongSuccess');
     const songs = mapToSongs(tracks);
     return updateObject(state, { loading: false, songsResult: songs });
 }
 
 const searchSongFail = (state: any, error: any) => {
-    console.log('[REDUCER] searchSongFail');
+    console.log('[SPOTIFY REDUCER] searchSongFail');
     return updateObject(state, { loading: false, songsResult: [] })
 }
 
 const authenticate = (state: any, token: string) => {
-    console.log('[REDUCER] authenticate');
+    console.log('[SPOTIFY REDUCER] authenticate');
     return updateObject(state, { spotifyToken: token });
 }
 

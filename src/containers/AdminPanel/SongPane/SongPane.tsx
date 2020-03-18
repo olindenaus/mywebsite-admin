@@ -13,6 +13,8 @@ import Modal from '../../../components/UI/Modal/Modal';
 
 const SongPane = (props: any) => {
 
+    const [futureSongs, setFutureSongs] = useState<any[]>();
+    const [showPopup, setShowPopup] = useState(false);
     const [songInfo, setSongInfo] = useState<string>("");
     const [songDate, setSongDate] = useState<string>((new Date()).toLocaleDateString("sv-SE").split(" ")[0]);
     const [pickedSong, setPickedSong] = useState<ISong>();
@@ -63,23 +65,29 @@ const SongPane = (props: any) => {
         props.onFetchSongs();
     }, [])
 
-    const songsOfADay = Object.keys(props.fetchedSongs).map((id: any) => {
-        return props.fetchedSongs[id];
-    });
+    useEffect(() =>{
+        setShowPopup(props.songSaved);
+    }, [props.songSaved])
+
+    useEffect(() => {
+        setFutureSongs(computeFutureSongs());
+    }, [props.fetchedSongs])
 
     const getFutureSongs = (songs: any, date: Date) => {
         return _.filter(songs, (a: any) => {
             return a.date >= date.toLocaleDateString("sv-SE").split(" ")[0];
         }).map((song: any) => {
-            console.log(song);            
+            console.log(song);
             return <p key={song.date}>{`${song.date}, ${song.song.artist} - ${song.song.name}`}</p>;
         });
     }
 
-    let futureSongs = null;
-    useEffect(() =>{
-        futureSongs = getFutureSongs(songsOfADay, new Date());
-    }, [])
+    const computeFutureSongs = () => {
+        const songsOfADay = Object.keys(props.fetchedSongs).map((id: any) => {
+            return props.fetchedSongs[id];
+        });
+        return getFutureSongs(songsOfADay, new Date());
+    }
 
     const formElementsArray = mapControlsToFormElements(controls);
 
@@ -156,7 +164,9 @@ const SongPane = (props: any) => {
             {futureSongs}
             <button className="button" onClick={onSearch}>Search</button>
             {songs}
-            {props.songSaved ? <Modal><p>Song saved succeffully</p></Modal>: null}
+            <Modal handleClose={() => setShowPopup(false)}
+                show={showPopup}><p>Song saved succeffully</p>
+            </Modal>
             <button className="save button" onClick={onSave}>Save</button>
         </div>
     )

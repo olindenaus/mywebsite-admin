@@ -11,6 +11,7 @@ const initialState = {
 };
 
 const authSuccess = (state: tState, action: any) => {
+    console.log("[AUTH REDUCER] authSuccess");    
     return updateObject(state, {
         token: action.idToken,
         userId: action.userId,
@@ -20,6 +21,7 @@ const authSuccess = (state: tState, action: any) => {
 };
 
 const authStart = (state: tState) => {
+    console.log("[AUTH REDUCER] authStart");
     return updateObject(state, {
         error: null,
         loading: true
@@ -27,6 +29,7 @@ const authStart = (state: tState) => {
 }
 
 const authFail = (state: tState, action: any) => {
+    console.log("[AUTH REDUCER] authFail");
     return updateObject(state, {
         error: action.error,
         loading: false
@@ -34,6 +37,7 @@ const authFail = (state: tState, action: any) => {
 }
 
 const authLogout = (state: tState) => {
+    console.log("[AUTH REDUCER] authLogout");
     return updateObject(state, { token: null, userId: null });
 };
 
