@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import _ from 'underscore';
 
-import SongDisplay from './SongDisplay/SongPicker';
+import SongPicker from './SongDisplay/SongPicker';
 import * as actions from '../../../store/actions';
 import { updateObject, checkValidity, mapControlsToFormElements } from '../../../shared/utility';
 import Input from '../../../components/UI/Input/Input';
@@ -56,7 +56,7 @@ const SongPane = (props: any) => {
 
     useEffect(() => {
         extractTokenFromCallback();
-    });
+    }, []);
 
     useEffect(() => {
         props.onFetchSongs();
@@ -137,7 +137,7 @@ const SongPane = (props: any) => {
     }
 
     let songs = props.songs.length > 0 ?
-        <SongDisplay songs={props.songs} pickSong={pickSong} /> : null;
+        <SongPicker songs={props.songs} pickSong={pickSong} picked={pickedSong} /> : null;
     if (props.loading) {
         songs = <Spinner />
     }
