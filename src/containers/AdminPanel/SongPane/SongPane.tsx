@@ -80,7 +80,6 @@ const SongPane = (props: any) => {
     useEffect(() =>{
         futureSongs = getFutureSongs(songsOfADay, new Date());
     }, [])
-    // const [futureSongs, setFutureSongs] = useState(getFutureSongs(songsOfADay, new Date()));
 
     const formElementsArray = mapControlsToFormElements(controls);
 
