@@ -21,7 +21,8 @@ const initialState = {
     songsResult: [],
     spotifyToken: '',
     loading: false,
-    fetchedSongs: []
+    fetchedSongs: [],
+    savedSong: false
 };
 
 const saveSongStart = (state: any) => {
@@ -31,12 +32,17 @@ const saveSongStart = (state: any) => {
 
 const saveSongSuccess = (state: any) => {
     console.log('[REDUCER] saveSongSuccess');
-    return updateObject(state, { loading: false });
+    return updateObject(state, { loading: false, savedSong: true });
 }
 
 const saveSongFail = (state: any, error: any) => {
     console.log('[REDUCER] saveSongFail');
     return updateObject(state, { loading: false, error: error });
+}
+
+const saveSongForget = (state: any) => {
+    console.log('[REDUCER] saveSongForget');
+    return updateObject(state, {savedSong: false});
 }
 
 const searchSongStart = (state: any) => {
@@ -111,6 +117,8 @@ const reducer = (state = initialState, action: any) => {
             return saveSongSuccess(state);
         case actionTypes.SAVE_SONG_FAIL:
             return saveSongFail(state, action.error);
+        case actionTypes.SAVE_SONG_FORGET:
+            return saveSongForget(state);
         case actionTypes.AUTHENTICATE:
             return authenticate(state, action.token);
         case actionTypes.SPOTIFY_LOGOUT:

@@ -122,12 +122,27 @@ export const fetchSongsFail = (error: any) => {
     }
 }
 
+export const foregtSavedSong = () => {
+    return {
+        type: actionTypes.AUTH_LOGOUT
+    };
+};
+
+export const forgetSongTimeout = () => {
+    return (dispatch: any) => {
+        setTimeout(() => {
+            dispatch(foregtSavedSong());
+        }, 10 * 1000)
+    }
+}
+
 export const fetchSongs = () => {
     return (dispatch: any) => {
         dispatch(fetchSongsStart());
         firebase.get('songs.json') //?orderBy="$key"
             .then(res => {
                 dispatch(fetchSongsSuccess(res.data));
+                dispatch(forgetSongTimeout());
             })
             .catch(err => {
                 console.log("----->>>>>Error: ", err.response);

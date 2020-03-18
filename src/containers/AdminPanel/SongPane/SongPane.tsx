@@ -9,6 +9,7 @@ import Input from '../../../components/UI/Input/Input';
 import { ISong } from '../../../store/reducers/spotify';
 import './SongPane.scss';
 import Spinner from '../../../components/UI/Spinner/Spinner';
+import Modal from '../../../components/UI/Modal/Modal';
 
 const SongPane = (props: any) => {
 
@@ -74,6 +75,12 @@ const SongPane = (props: any) => {
             return <p key={song.date}>{`${song.date}, ${song.song.artist} - ${song.song.name}`}</p>;
         });
     }
+
+    let futureSongs = null;
+    useEffect(() =>{
+        futureSongs = getFutureSongs(songsOfADay, new Date());
+    }, [])
+    // const [futureSongs, setFutureSongs] = useState(getFutureSongs(songsOfADay, new Date()));
 
     const formElementsArray = mapControlsToFormElements(controls);
 
@@ -147,9 +154,10 @@ const SongPane = (props: any) => {
             <h2>Song Pane</h2>
             {inputs}
             {authentication}
-            {getFutureSongs(songsOfADay, new Date())}
+            {futureSongs}
             <button className="button" onClick={onSearch}>Search</button>
             {songs}
+            {props.songSaved ? <Modal><p>Song saved succeffully</p></Modal>: null}
             <button className="save button" onClick={onSave}>Save</button>
         </div>
     )
@@ -161,7 +169,8 @@ const mapStateToProps = (state: any) => {
         songs: state.spotify.songsResult,
         authToken: state.auth.token,
         loading: state.spotify.loading,
-        fetchedSongs: state.spotify.fetchedSongs
+        fetchedSongs: state.spotify.fetchedSongs,
+        songSaved: state.spotify.savedSong
     }
 }
 
