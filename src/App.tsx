@@ -16,7 +16,7 @@ const SongOfADay = lazy(() => { return import('./containers/SongOfADay/SongOfADa
 
 const App = (props: any) => {
 
-  const adminPanel = /*props.isAuthenticated */ true ? <Route path="/admin" component={AdminPanel} /> : null;
+  const adminPanel = props.isAuthenticated ? <Route path="/admin" component={AdminPanel} /> : null;
 
   const routes = (
     <Switch>

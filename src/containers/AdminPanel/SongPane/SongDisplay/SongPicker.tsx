@@ -11,7 +11,8 @@ const songDisplay = (props: any) => {
         if (pickedSong && (pickedSong.name + pickedSong.artist === song.name + song.artist)) {
             classname = 'selected';
         }
-        return <Song key={song.name + song.artist} selected={classname} song={song} clicked={props.pickSong} />
+        const key = song.name + song.artist + song.duration;
+        return <Song key={key} selected={classname} song={song} clicked={props.pickSong} />
     })
 
     return (<div className="song-picker">{songs}</div>)

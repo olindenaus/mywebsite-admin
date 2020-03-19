@@ -123,7 +123,7 @@ export const fetchSongsFail = (error: any) => {
     }
 }
 
-export const foregtSavedSong = () => {
+export const forgetSavedSong = () => {
     return {
         type: actionTypes.SAVE_SONG_FORGET
     };
@@ -132,7 +132,7 @@ export const foregtSavedSong = () => {
 export const forgetSongTimeout = () => {
     return (dispatch: any) => {
         setTimeout(() => {
-            dispatch(foregtSavedSong());
+            dispatch(forgetSavedSong());
         }, 10 * 1000)
     }
 }
