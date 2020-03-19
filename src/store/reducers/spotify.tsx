@@ -90,17 +90,17 @@ const spotifyLogout = (state: any) => {
 
 const fetchSongsFail = (state: any, error: any) => {
     console.log('fetch song fail', error)
-    return updateObject(state, { error: error })
+    return updateObject(state, { error: error, loading: false })
 }
 
 const fetchSongsStart = (state: any) => {
     console.log('fetch song start')
-    return state;
+    return updateObject(state, {loading: true});
 }
 
 const fetchSongsSuccess = (state: any, data: any) => {
     console.log('fetch song success', data);
-    return updateObject(state, { fetchedSongs: data });
+    return updateObject(state, { fetchedSongs: data, loading: false });
 }
 
 const reducer = (state = initialState, action: any) => {

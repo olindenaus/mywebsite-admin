@@ -1,0 +1,47 @@
+.slideshow-container {
+    position: relative;
+    background: #f1f1f1;
+    border: 2px solid blue;
+    width: 100%;
+    // display: flex;
+
+    .my-slides {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 80px;
+    }
+    
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        margin-top: -30px;
+        padding: 16px;
+        color: #888;
+        font-weight: bold;
+        font-size: 20px;
+        border-radius: 0 3px 3px 0;
+    
+        &:hover {
+            background-color: rgba(0,0,0,0.8);
+            color: white;
+        }
+    }
+
+    .prev {
+        left: 0;
+    }
+    
+    .next {
+        position: absolute;
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+    
+    .active {
+        background-color: #717171;
+    }
+}
+

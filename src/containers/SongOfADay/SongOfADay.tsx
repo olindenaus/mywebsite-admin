@@ -5,6 +5,8 @@ import _ from 'underscore';
 import * as actions from '../../store/actions';
 import './SongOfADay.scss';
 import SongDisplay from './SongDisplay';
+import SlideShowContainer from './SlideShowContainer/SlideShowContainer';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 const SongOfADay = (props: any) => {
 
@@ -17,9 +19,8 @@ const SongOfADay = (props: any) => {
     const songsOfADay = Object.keys(props.songs).map((id: any) => {
         return props.songs[id];
     });
-    
+
     const [lookForDate, setLookForDate] = useState(new Date());
-    // const [song, setSong] = useState();
 
     const getSongForADate = (songs: any, date: Date) => {
         if (songs.length > 0) {
@@ -37,19 +38,21 @@ const SongOfADay = (props: any) => {
         setLookForDate(d);
     }
 
-    return (
-        <>
-            <h1>Song of A Day</h1>
-            <SongDisplay songOfADay={todaySong} date={lookForDate} />
-            <button onClick={() => changeDate(-1)}>Previous</button>
-            {lookForDate.toLocaleDateString("sv-SE") === today.toLocaleDateString("sv-SE") ? null : <button onClick={() => changeDate(1)}>Next</button>}
-        </>
-    );
+    let content = (<><h1>Song of A Day</h1><div className="song-day">
+        <SlideShowContainer lookForDate={lookForDate} todaySong={todaySong} switchSong={changeDate} />
+    </div></>);
+
+    if (props.loading) {
+        content = <><Spinner /></>
+    }
+
+    return (<>{content}</>);
 }
 
 const mapStateToProps = (state: any) => {
     return {
-        songs: state.spotify.fetchedSongs
+        songs: state.spotify.fetchedSongs,
+        loading: state.spotify.loading
     }
 }
 
