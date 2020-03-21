@@ -8,6 +8,14 @@
         opacity: 1;
         transition: opacity 1s;
     }
+
+    @media (max-width: 800px) {
+        display: none;
+    }
+    @media (max-width: 1200px) {
+        width: 150px;
+        height: 150px;
+    }
 }
 
 .hide { 

@@ -52,9 +52,10 @@ const SongOfADay = (props: any) => {
     }
 
     let content = (<><h1>Song of A Day</h1>
-        <h3>{lookForDate.toLocaleDateString("sv-SE")}</h3><div className="song-day">
-        <SlideShowContainer lookForDate={lookForDate} todaySong={todaySong} switchSong={changeDate} neighbors={getNeighbors()} />
-    </div></>);
+        <h3>{lookForDate.toLocaleDateString("sv-SE")}</h3>
+        <div className="song-day">
+            <SlideShowContainer lookForDate={lookForDate} todaySong={todaySong} switchSong={changeDate} neighbors={getNeighbors()} />
+        </div></>);
 
     if (props.loading) {
         content = <><Spinner /></>

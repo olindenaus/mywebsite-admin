@@ -28,7 +28,11 @@
           border-width: 10px;
           border-style: solid;
           border-color: black transparent transparent transparent;
-        }
+        } 
+        
+         @media (max-width: 800px) {
+          display: none;
+      }
       }
 
       &:hover {
@@ -37,4 +41,7 @@
         opacity: 1;
         }
       }
+
   }
+
+  

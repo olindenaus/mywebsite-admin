@@ -6,7 +6,6 @@ import picture from '../../../img/record-159211_1280.png';
 const SongThumbnail = (props: any) => {
 
     const hide = props.src ? '' : 'hide';
-    console.log(props.src);
     
     return (
         <div className={"song-thumbnail " + hide}> 

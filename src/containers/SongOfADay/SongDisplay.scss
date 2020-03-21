@@ -10,7 +10,20 @@
     box-shadow: 2px 5px 30px 1px #000;
 
     p {
-        margin: 6px;
-        
+        margin: 6px;        
+    }
+
+    @media (max-width: 1200px) {        
+        min-width: unset;
+        min-height: unset;
+        height: 350px;
+        width: 350px;
+    }
+    @media (max-width: 800px) {        
+        min-width: unset;
+        min-height: unset;
+        max-height: 300px;
+        max-width: 300px;
+        // box-shadow: 1px 1px 30px 1px #000;
     }
 }

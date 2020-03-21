@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import './SongDisplay.scss';
 import picture from '../../img/record-159211_1280.png';
 
-
 const SongDisplay = (props: any) => {
 
     const [audio, setAudio] = useState(new Audio());
