@@ -4,13 +4,10 @@ import _ from 'underscore';
 
 import * as actions from '../../store/actions';
 import './SongOfADay.scss';
-import SongDisplay from './SongDisplay';
 import SlideShowContainer from './SlideShowContainer/SlideShowContainer';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
 const SongOfADay = (props: any) => {
-
-    const today = new Date();
 
     useEffect(() => {
         props.onFetchSongs();
@@ -24,8 +21,8 @@ const SongOfADay = (props: any) => {
 
     const getSongForADate = (songs: any, date: Date) => {
         if (songs.length > 0) {
-            return _.filter(songs, function (a: any) {
-                return a.date == date.toLocaleDateString("sv-SE").split(" ")[0];
+            return _.filter(songs, function (song: any) {
+                return song.date === date.toLocaleDateString("sv-SE").split(" ")[0];
             })[0];
         }
     }
@@ -38,8 +35,25 @@ const SongOfADay = (props: any) => {
         setLookForDate(d);
     }
 
-    let content = (<><h1>Song of A Day</h1><div className="song-day">
-        <SlideShowContainer lookForDate={lookForDate} todaySong={todaySong} switchSong={changeDate} />
+    const getPreviousDaySong = () => {
+        let d = new Date(lookForDate.getTime());
+        d.setDate(d.getDate() - 1);
+        return getSongForADate(songsOfADay, d);
+    }
+
+    const getNextDaySong = () => {
+        let d = new Date(lookForDate.getTime());
+        d.setDate(d.getDate() + 1);
+        return getSongForADate(songsOfADay, d);
+    }
+
+    const getNeighbors = () => {
+        return [getPreviousDaySong(), getNextDaySong()];
+    }
+
+    let content = (<><h1>Song of A Day</h1>
+        <h3>{lookForDate.toLocaleDateString("sv-SE")}</h3><div className="song-day">
+        <SlideShowContainer lookForDate={lookForDate} todaySong={todaySong} switchSong={changeDate} neighbors={getNeighbors()} />
     </div></>);
 
     if (props.loading) {

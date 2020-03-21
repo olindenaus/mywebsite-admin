@@ -1,9 +1,6 @@
 .slideshow-container {
     position: relative;
-    background: #f1f1f1;
-    border: 2px solid blue;
     width: 100%;
-    // display: flex;
 
     .my-slides {
         display: flex;
@@ -18,30 +15,27 @@
         top: 50%;
         width: auto;
         margin-top: -30px;
-        padding: 16px;
-        color: #888;
+        padding: 16px;      
+        color: #ccc;  
+        background: none;
+        border: none;
         font-weight: bold;
-        font-size: 20px;
+        font-size: 40px;
         border-radius: 0 3px 3px 0;
     
         &:hover {
-            background-color: rgba(0,0,0,0.8);
-            color: white;
+            color: #000;
         }
     }
 
     .prev {
-        left: 0;
+        left: 5%;
     }
     
     .next {
         position: absolute;
-        right: 0;
+        right: 5%;
         border-radius: 3px 0 0 3px;
-    }
-    
-    .active {
-        background-color: #717171;
     }
 }
 

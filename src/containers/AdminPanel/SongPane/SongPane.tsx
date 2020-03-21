@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import _ from 'underscore';
 
-import SongPicker from './SongDisplay/SongPicker';
+import SongPicker from './SongPicker/SongPicker';
 import * as actions from '../../../store/actions';
 import { updateObject, checkValidity, mapControlsToFormElements } from '../../../shared/utility';
 import Input from '../../../components/UI/Input/Input';

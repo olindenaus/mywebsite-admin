@@ -5,7 +5,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import Layout from './components/UI/Layout/Layout';
 import WorldMapView from './containers/WorldMap/WorldMapView';
 import Spinner from './components/UI/Spinner/Spinner';
-import './App.css';
+import './App.scss';
 
 const Trainings = lazy(() => { return import('./containers/Trainings/Trainings') });
 const TimeTracker = lazy(() => { return import('./containers/Timetracker/Timetracker'); });

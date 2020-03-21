@@ -1,5 +1,16 @@
 .songOfADay {
-    border: 2px solid green;
-    min-height: 500px;
-    max-width: 500px;
+    min-height: 450px;
+    min-width: 450px;
+    cursor: pointer;
+    background-color: #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 5px 30px 1px #000;
+
+    p {
+        margin: 6px;
+        
+    }
 }
