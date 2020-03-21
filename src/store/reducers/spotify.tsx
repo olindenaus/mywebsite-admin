@@ -26,27 +26,27 @@ const initialState = {
 };
 
 const saveSongStart = (state: any) => {
-    console.log('[REDUCER] saveSongStart');
+    console.log('[SPOTIFY REDUCER] saveSongStart');
     return updateObject(state, { loading: true });
 }
 
 const saveSongSuccess = (state: any) => {
-    console.log('[REDUCER] saveSongSuccess');
+    console.log('[SPOTIFY REDUCER] saveSongSuccess');
     return updateObject(state, { loading: false, savedSong: true });
 }
 
 const saveSongFail = (state: any, error: any) => {
-    console.log('[REDUCER] saveSongFail');
+    console.log('[SPOTIFY REDUCER] saveSongFail');
     return updateObject(state, { loading: false, error: error });
 }
 
 const saveSongForget = (state: any) => {
-    console.log('[REDUCER] saveSongForget');
+    console.log('[SPOTIFY REDUCER] saveSongForget');
     return updateObject(state, {savedSong: false});
 }
 
 const searchSongStart = (state: any) => {
-    console.log('[REDUCER]  searchSongStart');
+    console.log('[SPOTIFY REDUCER]  searchSongStart');
     return updateObject(state, { loading: true });
 }
 
@@ -83,23 +83,24 @@ const authenticate = (state: any, token: string) => {
 }
 
 const spotifyLogout = (state: any) => {
+    console.log('[SPOTIFY REDUCER] logout');    
     return updateObject(state, {
         token: null
     })
 }
 
 const fetchSongsFail = (state: any, error: any) => {
-    console.log('fetch song fail', error)
+    console.log('[SPOTIFY REDUCER] fetch song fail', error)
     return updateObject(state, { error: error, loading: false })
 }
 
 const fetchSongsStart = (state: any) => {
-    console.log('fetch song start')
+    console.log('[SPOTIFY REDUCER] fetch song start')
     return updateObject(state, {loading: true});
 }
 
 const fetchSongsSuccess = (state: any, data: any) => {
-    console.log('fetch song success', data);
+    console.log('[SPOTIFY REDUCER] fetch song success', data);
     return updateObject(state, { fetchedSongs: data, loading: false });
 }
 

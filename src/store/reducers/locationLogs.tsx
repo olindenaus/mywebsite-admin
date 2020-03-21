@@ -9,10 +9,12 @@ const initialState = {
 };
 
 const fetchLocationsStart = (state: any) => {
+    console.log('[REDUCER LocationLogs] fetchLocationsStart');  
     return updateObject(state, { loading: true });
 }
 
 const fetchLocationsSuccess = (state: any, action: any) => {
+    console.log('[REDUCER LocationLogs] fetchLocationsSuccess');  
     return updateObject(state, {
         loading: false,
         locations: action.locations,
@@ -21,6 +23,7 @@ const fetchLocationsSuccess = (state: any, action: any) => {
 }
 
 const fetchLocationsFail = (state: any, action: any) => {
+    console.log('[REDUCER LocationLogs] fetchLocationsFail');  
     return updateObject(state, {
         loading: false,
         errorMessage: action.error
@@ -28,10 +31,12 @@ const fetchLocationsFail = (state: any, action: any) => {
 }
 
 const fetchCountryStart = (state: any) => {
+    console.log('[REDUCER LocationLogs] fetchCountryStart');  
     return updateObject(state, { loading: true });
 }
 
 const fetchCountrySuccess = (state: any, action: any) => {
+    console.log('[REDUCER LocationLogs] fetchCountrySucceess');  
     const country = action.data[Object.keys(action.data)[0]].country;
     if (typeof country === 'undefined') {
         return updateObject(state, {
@@ -48,6 +53,7 @@ const fetchCountrySuccess = (state: any, action: any) => {
 }
 
 const fetchCountryFail = (state: any, action: any) => {
+    console.log('[REDUCER LocationLogs] fetchCountryFail');    
     return updateObject(state, {
         errorMessage: action.error,
         loading: false
