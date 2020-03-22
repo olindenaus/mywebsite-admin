@@ -47,6 +47,7 @@ const SongPane = (props: any) => {
 
     const extractTokenFromCallback = () => {
         let url = window.location.href;
+        console.log("url: ", url)
         if (url.includes("access_token=")) {
             const queryParams = url.split("access_token=")[1].split("&");
             const token = queryParams[0];
@@ -77,7 +78,6 @@ const SongPane = (props: any) => {
         return _.filter(songs, (a: any) => {
             return a.date >= date.toLocaleDateString("sv-SE").split(" ")[0];
         }).map((song: any) => {
-            console.log(song);
             return <p key={song.date}>{`${song.date}, ${song.song.artist} - ${song.song.name}`}</p>;
         });
     }
@@ -103,8 +103,6 @@ const SongPane = (props: any) => {
     }
 
     const updateSongInfo = (formElement: any, value: any) => {
-        console.log(formElement);
-
         if (formElement.id === 'songDate') {
             setSongDate(value);
         } else {
@@ -132,7 +130,6 @@ const SongPane = (props: any) => {
     };
 
     const onSave = () => {
-        console.log(songDate);
         props.onSaveSong(pickedSong, songDate, props.authToken);
     };
 

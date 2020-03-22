@@ -24,6 +24,9 @@ export const authFail = (error: any) => {
 };
 
 export const logout = () => {
+    localStorage.removeItem('firebase_token');
+    localStorage.removeItem('firebase_expirationTime');
+    localStorage.removeItem('firebase_userId');
     return {
         type: actionTypes.AUTH_LOGOUT
     };
@@ -47,6 +50,10 @@ export const auth = (email: string, password: string) => {
         }
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + FIREBASE_KEY, authData)
             .then(response => {
+                const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+                localStorage.setItem('firebase_token', response.data.idToken);
+                localStorage.setItem('firebase_expirationDate', expirationDate.getTime().toString());
+                localStorage.setItem('firebase_userId', response.data.localId);
                 dispatch(authSuccess(response.data.idToken, response.data.localId));
                 dispatch(checkAuthTimeout(response.data.expiresIn));
             })
@@ -55,3 +62,21 @@ export const auth = (email: string, password: string) => {
             })
     };
 };
+
+export const authCheckState = () => {
+    return (dispatch: any) => {
+        const firebaseToken = localStorage.getItem('firebase_token');
+        if (!firebaseToken) {
+            dispatch(logout());
+        } else {
+            const expirationTime = localStorage.getItem('firebase_expirationDate') as string;
+            if (expirationTime > new Date().getTime().toString()) {
+                const userId = localStorage.getItem("firebase_userId") as string;
+                dispatch(authSuccess(firebaseToken, userId));
+                dispatch(checkAuthTimeout((Number.parseInt(expirationTime) - new Date().getTime())/1000));
+            } else {
+                dispatch(logout());
+            }
+        }
+    }
+}

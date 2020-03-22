@@ -1,5 +1,6 @@
 export {
-    auth
+    auth,
+    authCheckState
 } from './auth';
 export {
     fetchLocations,

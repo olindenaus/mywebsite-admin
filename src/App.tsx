@@ -1,10 +1,11 @@
-import React, { lazy } from 'react';
+import React, { lazy, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 
 import Layout from './components/UI/Layout/Layout';
 import WorldMapView from './containers/WorldMap/WorldMapView';
 import Spinner from './components/UI/Spinner/Spinner';
+import * as actions from './store/actions/index';
 import './App.scss';
 
 const Trainings = lazy(() => { return import('./containers/Trainings/Trainings') });
@@ -17,6 +18,10 @@ const SongOfADay = lazy(() => { return import('./containers/SongOfADay/SongOfADa
 const App = (props: any) => {
 
   const adminPanel = props.isAuthenticated ? <Route path="/admin" component={AdminPanel} /> : null;
+
+  useEffect(() => {
+    props.onTryAutoSignup()
+  }, []);
 
   const routes = (
     <Switch>
@@ -46,5 +51,10 @@ const mapStateToProps = (state: any) => {
   };
 };
 
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    onTryAutoSignup: () => dispatch(actions.authCheckState())
+  }
+}
 
-export default withRouter(connect(mapStateToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
