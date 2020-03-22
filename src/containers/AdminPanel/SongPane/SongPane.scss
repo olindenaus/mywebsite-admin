@@ -1,4 +1,34 @@
 .song-pane {
     border: 1px solid blue;
     flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .future-songs {
+        max-height: 150px;
+        width: 450px;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        margin: 16px 0;
+        border: 2px solid #333;
+        border-radius: 10px;
+        &::-webkit-scrollbar {
+            width: 20px;
+          }
+
+        &::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px #ccc;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #555; 
+            border-radius: 10px;
+          }
+          
+        &::-webkit-scrollbar-thumb:hover {
+           background: #333; 
+        }
+    }
 }
+

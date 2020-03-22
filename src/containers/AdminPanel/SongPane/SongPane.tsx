@@ -158,7 +158,9 @@ const SongPane = (props: any) => {
             <h2>Song Pane</h2>
             {inputs}
             {authentication}
+            <div className="future-songs">
             {futureSongs}
+            </div>
             <button className="button" onClick={onSearch}>Search</button>
             {songs}
             <Modal handleClose={() => setShowPopup(false)}
