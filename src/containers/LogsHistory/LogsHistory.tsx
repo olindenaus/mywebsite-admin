@@ -6,7 +6,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import Groups from './Groups/Groups';
 import './LogsHistory.scss';
 
-type tGroup = { country: string | any, logs: any[], startTime: number, endTime: number };
+export type tGroup = { country: string | any, logs: any[], startTime: number, endTime: number };
 type tLocation = { country: string, timestamp: number, latitude: number, longitude: number };
 
 export const LogsHistory = (props: any) => {
@@ -33,20 +33,14 @@ export const LogsHistory = (props: any) => {
             const location = locations[i];
             const country = location.country;
             if (country !== currentCountry) {
-                if (currentCountry === '') {
-                    addNewGroup(groups);
-                } else {
-                    addNewGroup(groups);
-                }
+                addNewGroup(groups);
                 currentCountry = country;
                 currentGroup = groups[groups.length - 1];
                 currentGroup.startTime = location.timestamp;
-                currentGroup.endTime = location.timestamp;
                 currentGroup.country = location.country;
                 currentGroup.logs.push(location);
             } else {
                 currentGroup.logs.push(location);
-                currentGroup.endTime = location.timestamp;
             }
         }
         return groups;

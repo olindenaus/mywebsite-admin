@@ -18,7 +18,7 @@ const Group = (props: any) => {
     return (
         <div className="group" onClick={() => props.clicked(groupInfo)}>
             <div className="group-info">
-                <div>{props.country}, {props.start.toLocaleDateString()} - {props.end.toLocaleDateString()}</div>
+                <div>{props.country}, {new Date(props.start).toLocaleDateString()} - {props.end === 0 ? 'present' : new Date(props.end).toLocaleDateString()}</div>
             </div>
         </div>
     )

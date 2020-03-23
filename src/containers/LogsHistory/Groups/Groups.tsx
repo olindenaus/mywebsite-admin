@@ -4,6 +4,7 @@ import Modal from '../../../components/UI/Modal/Modal';
 import Group from './Group/Group';
 import GroupDetails from './GroupDetails/GroupDetails';
 import './Groups.scss';
+import { tGroup } from '../LogsHistory';
 
 const Grouping = (props: any) => {
 
@@ -24,21 +25,33 @@ const Grouping = (props: any) => {
         setShow(false);
     }
 
-    const groups = props.groups().reverse().map((group: any) => {
+    let groups = props.groups();
+
+    const assignEndTimeToGroups = (groups: tGroup[]) => {
+        for (let i = 0; i < groups.length; i++) {
+            if (i !== groups.length - 1) {
+                groups[i].endTime = groups[i + 1].startTime;
+            }
+        }
+    }
+    
+    assignEndTimeToGroups(groups);
+    const groupElements = groups.reverse().map((group: any) => {
         return <Group
             id={group.startTime}
             key={group.startTime}
             country={group.country}
-            start={new Date(group.startTime)}
-            end={new Date(group.endTime)}
+            start={group.startTime}
+            end={group.endTime}
             logs={group.logs}
             clicked={showModal}
         />
     });
 
+
     return (
         <div className="groups">
-            {groups}
+            {groupElements}
             <Modal show={show} handleClose={closeModal}>
                 <GroupDetails
                     country={groupInfo.country}
