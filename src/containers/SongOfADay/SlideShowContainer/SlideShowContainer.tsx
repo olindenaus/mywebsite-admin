@@ -1,8 +1,8 @@
 import React from 'react';
 
 import './SlideShowContainer.scss';
-import SongDisplay from '../SongDisplay';
-import SongThumbnail from './SongThumbnail';
+import SongDisplay from './SongDisplay/SongDisplay';
+import SongThumbnail from './SongThumbnail/SongThumbnail';
 import { ISong } from '../../../store/reducers/spotify';
 
 const slideShowContainer = (props: any) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './SongThumbnail.scss';
-import picture from '../../../img/record-159211_1280.png';
+import picture from '../../../../img/record-159211_1280.png';
 
 const SongThumbnail = (props: any) => {
 
