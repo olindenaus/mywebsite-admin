@@ -63,7 +63,8 @@ const SongPane = (props: any) => {
     }, []);
 
     useEffect(() => {
-        props.onFetchSongs();
+        props.onFetchSongs();        
+        props.spotifyCheckState();
     }, [])
 
     useEffect(() =>{
@@ -187,7 +188,8 @@ const mapDispatchToProps = (dispatch: any) => {
         onSearchSong: (song: string, token: string) => dispatch(actions.searchSong(song, token)),
         onSaveSong: (song: ISong, date: Date, token: string) => dispatch(actions.saveSong(song, date, token)),
         onAuthenticate: (token: string, expiresTime: number) => dispatch(actions.spotifyAuth({ token: token, expiresIn: expiresTime })),
-        onFetchSongs: () => dispatch(actions.fetchSongs())
+        onFetchSongs: () => dispatch(actions.fetchSongs()),        
+        spotifyCheckState: () => dispatch(actions.spotifyCheckState())
     }
 }
 

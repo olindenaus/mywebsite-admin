@@ -83,6 +83,8 @@ export const spotifyAuthSuccess = (token: string) => {
 }
 
 export const spotifyLogout = () => {
+    localStorage.removeItem("spotify_token");
+    localStorage.removeItem("spotify_expirationTime");
     return {
         type: actionTypes.SPOTIFY_LOGOUT
     }
@@ -98,6 +100,9 @@ export const spotifyAuthTimeout = (expirationTime: number) => {
 
 export const spotifyAuth = (data: any) => {
     return (dispatch: any) => {
+        localStorage.setItem("spotify_token", data.token);
+        const expirationTime = new Date().getTime() + Number.parseInt(data.expiresIn)*1000;
+        localStorage.setItem("spotify_expirationTime", expirationTime.toString());
         dispatch(spotifyAuthSuccess(data.token));
         dispatch(spotifyAuthTimeout(data.expiresIn));
     }
@@ -148,5 +153,23 @@ export const fetchSongs = () => {
                 console.log("----->>>>>Error: ", err.response);
                 dispatch(fetchSongsFail(err.response));
             })
+    }
+}
+
+export const spotifyCheckState = () => {
+    return (dispatch: any) => {
+        const spotifyToken = localStorage.getItem('spotify_token');
+        if(!spotifyToken) {       
+            dispatch(spotifyLogout());
+        } else {
+            const expirationTime = localStorage.getItem("spotify_expirationTime") as string;
+            const expiresIn = (Number.parseInt(expirationTime) - new Date().getTime())/1000;
+            if(expirationTime > new Date().getTime().toString()) {
+                dispatch(spotifyAuthSuccess(spotifyToken));
+                dispatch(spotifyAuthTimeout(expiresIn));
+            } else {
+                dispatch(spotifyLogout());
+            }
+        }
     }
 }

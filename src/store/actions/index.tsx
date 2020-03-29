@@ -20,4 +20,5 @@ export {
     saveSong,
     searchSong,
     fetchSongs,
+    spotifyCheckState,
 } from './spotify';
