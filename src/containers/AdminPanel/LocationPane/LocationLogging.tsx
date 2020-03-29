@@ -13,7 +13,7 @@ type tLocationLog = { timestamp: number, latitude: number, longitude: number, co
 const LocationLogging = (props: any) => {
 
     const [message, setMessage] = useState('');
-    const [showPopup, setShowPopup] = useState(true);
+    const [showPopup, setShowPopup] = useState(false);
     const [manual, setManual] = useState(false);
     const [locationLog, setLocationLog] = useState({
         timestamp: 0,
