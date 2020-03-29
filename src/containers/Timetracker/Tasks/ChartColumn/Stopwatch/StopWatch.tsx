@@ -15,6 +15,13 @@ const Stopwatch = (props: any) => {
     const [displayTime, setDisplayTime] = useState('');
 
     useEffect(() => {
+        return () => {
+            clearInterval(intervalRef);
+        clearInterval(updateIntervalRef);
+        }
+    }, [])
+
+    useEffect(() => {
         updateDisplayTime(time);
     }, [time]);
 
@@ -36,7 +43,7 @@ const Stopwatch = (props: any) => {
 
     const start = () => {
         let x = setInterval(tick, 1000);
-        let y = setInterval(update, 60*1000);
+        let y = setInterval(update, 60 * 1000);
         setIntervalRef(x);
         setUpdateIntervalRef(y);
     }
@@ -54,7 +61,7 @@ const Stopwatch = (props: any) => {
 
     const updateDisplayTime = (time: number) => {
         const hours = Math.floor((time / 60 / 60));
-        let minutes = Math.floor(time / 60) - (hours *60);
+        let minutes = Math.floor(time / 60) - (hours * 60);
         let displayMin = (minutes % 60).toString();
         let displayH = hours.toString();
         if (minutes < 10) {
@@ -69,7 +76,7 @@ const Stopwatch = (props: any) => {
     return (
         <div className="stopwatch">
             <span>{displayTime}</span>
-            <PlayButton running={running} clicked={toggleTimer}/>
+            <PlayButton running={running} clicked={toggleTimer} />
         </div>
     )
 };

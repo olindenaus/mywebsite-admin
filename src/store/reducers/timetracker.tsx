@@ -15,22 +15,25 @@ const initialState: IState = {
 };
 
 const addTask = (state: any, action: any) => {
-    return updateObject(state, {
+    const updated = updateObject(state, {
         tasks: state.tasks.concat(action.task),
         UUID: state.UUID + 1
     });
+    localStorage.setItem("tasks", JSON.stringify(updated.tasks));
+    return updated;
 }
 
 const updateTask = (state: any, action: any) => {
-    return updateObject(state, {
-        tasks: state.tasks.map((task: ITask) => {
-            return (task.id !== action.id) ?
-                task : {
-                    ...task,
-                    timeSpent: action.time
-                }
-        })
+    const updatedTasks = state.tasks.map((task: ITask) => {
+        return (task.id !== action.id) ?
+            task : {
+                ...task,
+                timeSpent: action.time
+            }
     })
+    const updated = updateObject(state, { tasks: updatedTasks })
+    localStorage.setItem("tasks", JSON.stringify(updated.tasks));
+    return updated;
 }
 
 const deleteTask = (state: any, action: any) => {
@@ -41,7 +44,15 @@ const deleteTask = (state: any, action: any) => {
     const updated = updateObject(state, {
         tasks: tasks
     });
+    localStorage.setItem("tasks", JSON.stringify(updated.tasks));
     return updated;
+}
+
+const loadTasks = (state: any, action: any) => {
+    var sth = JSON.parse(action.tasks);
+    console.log("parsed: ", sth);
+    
+    return updateObject(state, {tasks: action.tasks})
 }
 
 const reducer = (state = initialState, action: any) => {
@@ -52,6 +63,8 @@ const reducer = (state = initialState, action: any) => {
             return updateTask(state, action);
         case actionTypes.DELETE_TASK:
             return deleteTask(state, action);
+        case actionTypes.LOAD_TASKS:
+            return loadTasks(state, action);
         default:
             return state;
     }

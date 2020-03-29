@@ -18,6 +18,7 @@ export const ADD_TASK = 'ADD_TASK';
 export const UPDATE_TASK = 'UPDATE_TASK';
 export const DELETE_TASK = 'DELETE_TASK';
 export const UPDATE_GRID = 'UPDATE_GRID';
+export const LOAD_TASKS = 'LOAD_TASKS';
 
 export const SEARCH_SONG_START = 'SEARCH_SONG';
 export const SEARCH_SONG_SUCCESS = 'SEARCH_SONG_SUCCESS';

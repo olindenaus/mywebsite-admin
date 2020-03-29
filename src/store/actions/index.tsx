@@ -13,7 +13,8 @@ export {
     addTask,
     updateTask,
     deleteTask,
-    updateGrid
+    updateGrid,
+    onCheckTasks
 } from './timetracker';
 export {
     spotifyAuth,

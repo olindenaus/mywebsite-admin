@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import ChartColumn from './ChartColumn/ChartColumn';
+import * as actions from '../../../store/actions/index';
 import './Tasks.scss';
 
 const Tasks = (props: any) => {
 
+    useEffect(() => {
+        props.onCheckTasks();
+    }, []);
+
     const tasks = props.tasks.map((task: any) => {
-        const percentage = (task.timeSpent / (props.max*3600) * 100).toFixed(0) + '%';
+        const percentage = (task.timeSpent / (props.max * 3600) * 100).toFixed(0) + '%';
         return <ChartColumn key={task.id} task={task} height={percentage} />
     });
 
@@ -23,4 +28,10 @@ const mapStateToProps = (state: any) => {
     }
 }
 
-export default connect(mapStateToProps)(Tasks);
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        onCheckTasks: () => dispatch(actions.onCheckTasks())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tasks);
