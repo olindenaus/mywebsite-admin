@@ -77,7 +77,7 @@ const LocationLogging = (props: any) => {
             timestamp: logDate,
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
-            country: locationLog.country
+            country: controls.country.value
         }
         setLocationLog(tempLocationLog);
         const dateVal = new Date(tempLocationLog.timestamp).toLocaleString();
@@ -95,7 +95,7 @@ const LocationLogging = (props: any) => {
             timestamp: locationLog.timestamp,
             latitude: trimmedLat,
             longitude: trimmedLng,
-            country: locationLog.country
+            country: controls.country.value
         });
         const dateVal = new Date(locationLog.timestamp).toLocaleString();
         setMessage(`Logged: ${dateVal}, Lat: ${trimmedLat}, Long: ${trimmedLng}`);
