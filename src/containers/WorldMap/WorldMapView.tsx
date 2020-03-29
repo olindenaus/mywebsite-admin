@@ -26,8 +26,12 @@ export const WorldMapView = (props: any) => {
   }, []);
 
   const getStyleForVisitedCountry = (geo: any) => {
-    const v = visitedCountries.find(c => c === geo.properties.ISO_A3);
-    return v ? { default: { fill: "gray", stroke: "#000" } } : { default: { fill: '66ff66', stroke: "#000" } };
+    console.log("geo: ", geo);
+    const visited = visitedCountries.find(c => c === geo.properties.ISO_A3);
+    if(props.country === geo.properties.NAME) {
+      return {default: {fill: "red", stroke: "#000"}};
+    }
+    return visited ? { default: { fill: "gray", stroke: "#000" } } : { default: { fill: '66ff66', stroke: "#000" } };
   }
 
   let currentlyIn = <p>Currently in... {props.country}</p>;
