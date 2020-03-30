@@ -50,7 +50,22 @@ const deleteTask = (state: any, action: any) => {
 
 const loadTasks = (state: any, action: any) => {
     const tasks = JSON.parse(action.tasks);
-    return updateObject(state, {tasks: tasks})
+    return updateObject(state, { tasks: tasks })
+}
+
+const saveTasks = (state: any) => {
+    console.log('[TIMETRACKER REDUCER] saveTasks():');
+    return state;
+}
+
+const saveTasksFail = (state: any, action: any) => {
+    console.log('[TIMETRACKER REDUCER] saveTasks():');
+    return state;
+}
+
+const saveTasksSuccess = (state: any) => {
+    console.log('[TIMETRACKER REDUCER] saveTasks():');
+    return state;
 }
 
 const reducer = (state = initialState, action: any) => {
@@ -63,6 +78,12 @@ const reducer = (state = initialState, action: any) => {
             return deleteTask(state, action);
         case actionTypes.LOAD_TASKS:
             return loadTasks(state, action);
+        case actionTypes.SAVE_TASKS:
+            return saveTasks(state);
+        case actionTypes.SAVE_TASKS_FAIL:
+            return saveTasksFail(state, action.error);
+        case actionTypes.SAVE_TASKS_SUCCESS:
+            return saveTasksSuccess(state);
         default:
             return state;
     }

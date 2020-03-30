@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { ITask } from './Tasks/ITask';
 
+import * as actions from '../../store/actions';
 import Modal from '../../components/UI/Modal/Modal';
 import TaskCreator from './TaskManager/TaskCreator/TaskCreator';
 import Summary from './Summary/Summary';
@@ -33,6 +34,12 @@ const Timekeeper = (props: any) => {
         ><TaskCreator handleClose={() => setShowModal(false)} />
         </Modal> : null;
 
+
+    const onSave = () => {
+        console.log("tasks: ", props.tasks);
+        console.log("token", props.authToken);        
+        props.onSaveTasks(props.tasks, props.authToken);
+    }
     return (
         <div className="timetracker">
             <h1>Timetracker</h1>
@@ -42,14 +49,22 @@ const Timekeeper = (props: any) => {
                 <Summary />
                 <TaskManager clicked={() => setShowModal(true)} />
             </Scale>
+            <button onClick={onSave}>Test save</button>
         </div>
     )
 };
 
 const mapStateToProps = (state: any) => {
     return {
-        tasks: state.timetracker.tasks
+        tasks: state.timetracker.tasks,
+        authToken: state.auth.token,
     }
 }
 
-export default connect(mapStateToProps)(Timekeeper);
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        onSaveTasks: (tasks: ITask[], token: string) => dispatch(actions.saveUserTasks(tasks, token)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Timekeeper);
