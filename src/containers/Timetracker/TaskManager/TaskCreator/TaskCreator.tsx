@@ -6,16 +6,19 @@ import './TaskCreator.scss';
 
 const TaskCreator = (props: any) => {
     const [taskName, setTaskName] = useState('');
+    const [project, setProject] = useState('');
     const [timeSpent, setTimeSpent] = useState(0);
     const [color, setColor] = useState('#cccccc');
 
     const addTask = () => {
         const UUID = props.UID;
-        const newTask = {
+        const newTask: ITask = {
             id: UUID,
             name: taskName,
             timeSpent: timeSpent * 60,
-            color: color
+            color: color,
+            date: new Date(),
+            project: project
         };
         props.onAddTask(newTask);
         props.handleClose();
@@ -27,11 +30,13 @@ const TaskCreator = (props: any) => {
             <div className="form">
                 <label>Task name:</label>
                 <input type="text" onChange={(e: any) => setTaskName(e.target.value)}></input>
+                <label>Task project/group if any:</label>
+                <input type="text" onChange={(e: any) => setProject(e.target.value)}></input>
                 <label>Already spent time (minutes):</label>
                 <input type="number" onChange={(e: any) => setTimeSpent(e.target.value)}></input>
                 <label>Color:</label>
-                <input type="color" value={color} onChange={(e: any) => setColor(e.target.value)}></input>
-                <button onClick={addTask}>Create</button>
+                <input id="color" type="color" value={color} onChange={(e: any) => setColor(e.target.value)}></input>
+                <button onClick={addTask}>Create task</button>
             </div>
         </div>
     )

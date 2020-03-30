@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import './Scale.scss';
 
@@ -19,9 +18,4 @@ const scale = (props: any) => {
     )
 };
 
-const mapStateToProps = (state: any) => {
-    return {
-        tasks: state.timetracker.tasks
-    }
-}
-export default connect(mapStateToProps)(scale);
+export default scale;

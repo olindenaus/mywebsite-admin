@@ -31,9 +31,13 @@ export const updateGrid = () => {
 
 export const onCheckTasks = () => {
     const tasks = localStorage.getItem("tasks");
-    console.log("tasks from localStorage: ", tasks);
+    if(tasks!==null) {
+        return {
+            type: actionTypes.LOAD_TASKS,
+            tasks: tasks
+        }
+    }
     return {
-        type: actionTypes.LOAD_TASKS,
-        tasks: tasks
+        type: "NONE",
     }
 }

@@ -49,10 +49,8 @@ const deleteTask = (state: any, action: any) => {
 }
 
 const loadTasks = (state: any, action: any) => {
-    var sth = JSON.parse(action.tasks);
-    console.log("parsed: ", sth);
-    
-    return updateObject(state, {tasks: action.tasks})
+    const tasks = JSON.parse(action.tasks);
+    return updateObject(state, {tasks: tasks})
 }
 
 const reducer = (state = initialState, action: any) => {

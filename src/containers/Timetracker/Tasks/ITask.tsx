@@ -2,5 +2,7 @@ export interface ITask {
     id: number,
     name: string,
     timeSpent: number,
-    color: string
+    color: string,
+    date: Date,
+    project: string
 }
