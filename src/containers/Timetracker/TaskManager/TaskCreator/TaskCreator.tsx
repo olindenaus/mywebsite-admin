@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../../store/actions';
 import { ITask } from '../../Tasks/ITask';
@@ -9,6 +9,10 @@ const TaskCreator = (props: any) => {
     const [project, setProject] = useState('');
     const [timeSpent, setTimeSpent] = useState(0);
     const [color, setColor] = useState('#cccccc');
+
+    useEffect(() => {
+
+    }, [])
 
     const addTask = () => {
         const UUID = props.UID;
@@ -29,7 +33,7 @@ const TaskCreator = (props: any) => {
             <h3>Create task</h3>
             <div className="form">
                 <label>Task name:</label>
-                <input type="text" onChange={(e: any) => setTaskName(e.target.value)}></input>
+                <input autoFocus type="text" onChange={(e: any) => setTaskName(e.target.value)}></input>
                 <label>Task project/group if any:</label>
                 <input type="text" onChange={(e: any) => setProject(e.target.value)}></input>
                 <label>Already spent time (minutes):</label>

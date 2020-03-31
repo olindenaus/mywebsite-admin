@@ -1,3 +1,13 @@
+.blink {
+    animation: blinker 2s cubic-bezier(.5, 0, 1, 1) infinite alternate;
+}
+
+@keyframes blinker {
+    100% {
+        opacity: 60%;
+    }
+}
+
 .column-border {
     margin: 0 1em;
     width: 150px;

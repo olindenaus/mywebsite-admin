@@ -17,7 +17,7 @@ const Stopwatch = (props: any) => {
     useEffect(() => {
         return () => {
             clearInterval(intervalRef);
-        clearInterval(updateIntervalRef);
+            clearInterval(updateIntervalRef);
         }
     }, [])
 

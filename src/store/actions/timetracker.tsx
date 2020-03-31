@@ -31,15 +31,34 @@ export const updateGrid = () => {
 }
 
 export const onCheckTasks = () => {
-    const tasks = localStorage.getItem("tasks");
+    return (dispatch: any) => {
+    const tasks = localStorage.getItem("tasks");    
     if(tasks!==null) {
+        const tasksObj: ITask[] = JSON.parse(tasks);
+        const timeLeft = new Date().getTime() - new Date(tasksObj[0].date).getTime();        
+        dispatch(tasksTimeout(timeLeft));
         return {
             type: actionTypes.LOAD_TASKS,
             tasks: tasks
         }
     }
     return {
-        type: "NONE",
+        type: "DEFAULT",
+    }
+}
+}
+
+export const deleteAllTasks = () => {
+    return {
+        type: "DEFAULT",
+    }
+}
+
+export const tasksTimeout = (expirationTime: number) => {
+    return (dispatch: any) => {
+        setTimeout(() => {
+            dispatch(deleteAllTasks());
+        }, expirationTime);
     }
 }
 
@@ -69,10 +88,7 @@ export const saveUserTasks = (tasks: ITask[], token: string) => {
         const userId = localStorage.getItem("userId") ? localStorage.getItem("userId") : "guest";
 
         const date = tasks.length > 0 ? tasks[0].date : new Date();
-        const queryParams = `tasks/${userId}/${date}.json?auth=${token}`;
-        console.log("queryParams: ", queryParams);
-        console.log("userId ", userId);
-        
+        const queryParams = `tasks/${userId}/${date}.json?auth=${token}`;        
         
         firebase.post(queryParams, { tasks: tasks})
             .then(res => {

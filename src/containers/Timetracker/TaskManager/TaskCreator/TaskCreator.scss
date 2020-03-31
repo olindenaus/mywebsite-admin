@@ -10,16 +10,16 @@
         grid-row-gap: 1em;
         justify-content: center;
         min-height: 250px;
+        label {
+            place-self: center;
+        }
         @media (max-width: 800px) {                
             min-height: 400px;
             grid-template-columns: repeat(4, 20%);
             align-items: stretch;
-            justify-content: center;
             row-gap: 0.5em;
-            justify-content: center;
             label {
                 grid-column: 1/5;
-                place-self: center;
             }
             input {
                 grid-column: 1/5;
