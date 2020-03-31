@@ -11,7 +11,7 @@ const songDisplay = (props: any) => {
         if (pickedSong && (pickedSong.name + pickedSong.artist === song.name + song.artist)) {
             classname = 'selected';
         }
-        const key = song.name + song.artist + song.duration;
+        const key = song.name + song.artist + song.duration + song.images.medium.url;
         return <Song key={key} selected={classname} song={song} clicked={props.pickSong} />
     })
 
