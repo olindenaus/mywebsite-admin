@@ -1,0 +1,18 @@
+.scroll-menu {
+    background-color: #333;
+    overflow: auto;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+
+    div {
+        color: white;
+        text-align: center;
+        padding: 14px;
+        max-width: 100px;
+        cursor: pointer;
+        &:hover{
+            background-color: #444;
+        }
+    }
+}

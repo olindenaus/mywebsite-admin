@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import LocationPane from './LocationPane/LocationLogging';
 import SongPane from './SongPane/SongPane';
+import ScrollMenu from '../../components/UI/ScrollMenu/ScrollMenu';
 import './AdminPanel.scss';
 
 const AdminPanel = (props: any) => {
 
+    const [displayComponent, setDisplayComponent] = useState(<SongPane />);
+
     return (
         <div className="admin-panel">
-            <h1>Admin Panel</h1>
-            <div className="panel-container">
-                <LocationPane />
-                <SongPane />
-            </div>
+            <ScrollMenu>
+                <div onClick={() => setDisplayComponent(<LocationPane />)}>Position pane</div>
+                <div onClick={() => setDisplayComponent(<SongPane />)}>Song pane</div>
+            </ScrollMenu>
+            {displayComponent}
         </div>
     )
 };

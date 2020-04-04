@@ -1,13 +1,11 @@
 .song-pane {
-    border: 1px solid blue;
-    flex-grow: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     .future-songs {
         max-height: 150px;
-        width: 450px;
+        max-width: 450px;
         overflow-y: scroll;
         scrollbar-width: none;
         margin: 16px 0;

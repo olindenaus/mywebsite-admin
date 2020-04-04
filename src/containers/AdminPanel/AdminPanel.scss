@@ -1,9 +1,11 @@
 @import '../../main';
 
 .admin-panel {    
+    height: 100%;
+    width: 100%;
     button {
         display: block;
-        margin: 32px auto;
+        margin: 28px auto;
         font-weight: bold;
         background-color: map-get($colors, "theme-black");
         color: map-get($colors, "theme-white");
@@ -21,15 +23,8 @@
         }
     }
 
-    .panel-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-content: stretch;
-    }
-
 .save {
-    margin: 4rem auto 1rem auto;
+    margin: 2rem auto 1rem auto;
     font-size: 2em;
 }
 }
