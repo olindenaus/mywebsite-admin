@@ -9,9 +9,7 @@ import thunk from 'redux-thunk';
 import './index.css';
 import App from './App';
 import authReducer from './store/reducers/auth';
-import logsReducer from './store/reducers/locationLogs';
 import adminReducer from './store/reducers/admin';
-import timeTrackerReducer from './store/reducers/timetracker';
 import spotifyReducer from './store/reducers/spotify';
 
 declare global {
@@ -22,9 +20,7 @@ const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    logs: logsReducer,
     admin: adminReducer,
-    timetracker: timeTrackerReducer,
     spotify: spotifyReducer
 });
 

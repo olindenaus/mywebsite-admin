@@ -2,21 +2,9 @@ export {
     auth,
     authCheckState
 } from './auth';
-export {
-    fetchLocations,
-    fetchCountryInfo
-} from './locationLogs';
 export {    
     saveLocationLog,
 } from './admin';
-export {
-    addTask,
-    updateTask,
-    deleteTask,
-    updateGrid,
-    onCheckTasks,
-    saveUserTasks,
-} from './timetracker';
 export {
     spotifyAuth,
     saveSong,

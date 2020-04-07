@@ -3,17 +3,12 @@ import { connect } from 'react-redux';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 
 import Layout from './components/UI/Layout/Layout';
-import WorldMapView from './containers/WorldMap/WorldMapView';
 import Spinner from './components/UI/Spinner/Spinner';
 import * as actions from './store/actions/index';
 import './App.scss';
 
-const Trainings = lazy(() => { return import('./containers/Trainings/Trainings') });
-const TimeTracker = lazy(() => { return import('./containers/Timetracker/Timetracker'); });
 const Auth = lazy(() => { return import('./auth/Auth'); });
 const AdminPanel = lazy(() => { return import('./containers/AdminPanel/AdminPanel'); });
-const LogsHistory = lazy(() => { return import('./containers/LogsHistory/LogsHistory'); });
-const SongOfADay = lazy(() => { return import('./containers/SongOfADay/SongOfADay'); });
 
 const App = (props: any) => {
 
@@ -25,14 +20,8 @@ const App = (props: any) => {
 
   const routes = (
     <Switch>
-      <Route path='/map' component={WorldMapView} />
-      <Route path='/trainings' component={Trainings} />
-      <Route path='/timekeeper' component={TimeTracker} />
-      <Route path='/song' component={SongOfADay} />
       <Route path='/login' component={Auth} />
       {adminPanel}
-      <Route path='/logs' component={LogsHistory} />
-      <Route path='/' component={WorldMapView} />
       <Redirect to='/' />
     </Switch>
   );
