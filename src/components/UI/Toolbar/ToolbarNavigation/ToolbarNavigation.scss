@@ -5,12 +5,12 @@
     height: 100%;
     width: 80%;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     margin: 0 auto;
 
     a {
         text-decoration: none;
-        width: 100%;
+        width: 200px;
         height: 100%;
         color: map-get($colors, "theme-white");;
         margin: 0 2%;

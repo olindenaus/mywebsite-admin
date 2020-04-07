@@ -22,6 +22,7 @@ const App = (props: any) => {
     <Switch>
       <Route path='/login' component={Auth} />
       {adminPanel}
+      <Route path='/' component={Auth} />
       <Redirect to='/' />
     </Switch>
   );
