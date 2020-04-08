@@ -49,6 +49,7 @@ export const auth = (email: string, password: string) => {
         }
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + process.env.REACT_APP_FIREBASE_KEY, authData)
             .then(response => {
+                console.log(response);
                 const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
                 localStorage.setItem('firebase_token', response.data.idToken);
                 localStorage.setItem('firebase_expirationDate', expirationDate.getTime().toString());

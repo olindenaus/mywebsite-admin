@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const firebase = axios.create({
-    baseURL: 'https://website-d1578.firebaseio.com',
+    baseURL: 'https://website-admin-6337d.firebaseio.com',
 });
 
 export const spotify_api = axios.create({

@@ -1,6 +1,7 @@
 export {
     auth,
-    authCheckState
+    authCheckState,
+    logout
 } from './auth';
 export {    
     saveLocationLog,

@@ -1,22 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import * as actions from '../../../store/actions/index';
 
 export const NavigationLinks = (props: any) => {
 
-    let personalContent = <NavLink to="/login">Login</NavLink>;
+    let logButton = <NavLink to="/login">Login</NavLink>;
 
     if (props.isAuthenticated) {
-        personalContent = (
+        logButton = (
             <>
-                <NavLink to="/admin">Admin</NavLink>
+                <div onClick={props.logout}>Logout</div>
             </>
         )
     }
 
     return (
         <>
-            {personalContent}            
+            {logButton}            
         </>
     )
 };
@@ -26,4 +27,10 @@ const mapStateToProps = (state: any) => {
         isAuthenticated: state.auth.token !== null
     }
 }
-export default connect(mapStateToProps)(NavigationLinks);
+
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        logout: () => {dispatch(actions.logout())}
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationLinks);
