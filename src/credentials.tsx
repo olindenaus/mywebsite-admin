@@ -1,2 +1,0 @@
-export const SPOTIFY_API_KEY = 'SPOTIFY_API_KEY';
-export const FIREBASE_KEY = 'FIREBASE_KEY';
