@@ -10,7 +10,7 @@ export const NavigationLinks = (props: any) => {
     if (props.isAuthenticated) {
         logButton = (
             <>
-                <div onClick={props.logout}>Logout</div>
+                <NavLink to="/" style={{cursor: "pointer"}} onClick={props.logout}>Logout</NavLink>
             </>
         )
     }
